@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Montserrat:wght@400;500;700&family=Nokora:wght@700&display=swap');
+@import "tailwindcss";
+
+:root {
+  font-family: "Montserrat", sans-serif;
+  color: #f8fbff;
+  background: #03114f;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(74, 123, 255, 0.24), transparent 30%),
+    linear-gradient(180deg, #03114f 0%, #04165f 42%, #03114f 100%);
+}
+
+button,
+a {
+  color: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.font-display {
+  font-family: "Nokora", sans-serif;
+}
+
+.font-nav {
+  font-family: "Inter", sans-serif;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  padding-bottom: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: #ffd900;
+  box-shadow: 0 0 18px rgba(255, 217, 0, 0.95);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.is-active {
+  color: #ffd900;
+  text-shadow: 0 0 18px rgba(255, 217, 0, 0.4);
+}
+
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+@media (min-width: 640px) {
+  .nav-link {
+    font-size: 0.88rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-link {
+    font-size: 1rem;
+  }
+}
