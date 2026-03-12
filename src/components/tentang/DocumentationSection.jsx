@@ -8,12 +8,11 @@ function DocumentationCard({ image, index }) {
       <img
         src={image.src}
         alt={image.alt ?? `Dokumentasi ${index + 1}`}
-        className="aspect-square w-full object-cover [transform:scale(var(--doc-scale))] [transform-origin:var(--doc-origin)] transition duration-500 ease-out group-hover:[transform:scale(var(--doc-hover-scale))]"
+        className="aspect-square w-full object-cover transition duration-500 ease-out group-hover:scale-[var(--doc-hover-scale)]"
         style={{
           objectPosition: `${image.focusX ?? '50%'} ${image.focusY ?? '50%'}`,
-          '--doc-origin': `${image.focusX ?? '50%'} ${image.focusY ?? '50%'}`,
-          '--doc-scale': String(image.zoom ?? 1.12),
           '--doc-hover-scale': String((image.zoom ?? 1.12) + 0.03),
+          transform: `scale(${image.zoom ?? 1.12})`,
         }}
       />
     </article>
@@ -44,7 +43,7 @@ function DocumentationSection() {
           </p>
         </div>
 
-        <div className="mx-auto mt-14 grid max-w-[58rem] place-items-center gap-8 sm:grid-cols-2 sm:gap-10 lg:max-w-[60rem] lg:gap-12 xl:max-w-[62rem] xl:grid-cols-3">
+        <div className="mx-auto mt-14 grid max-w-[58rem] place-items-center gap-y-8 sm:grid-cols-2 lg:max-w-[60rem] lg:gap-y-10 xl:max-w-[62rem] xl:grid-cols-3">
           {documentationImages.map((image, index) => (
             <DocumentationCard key={image.src} image={image} index={index} />
           ))}

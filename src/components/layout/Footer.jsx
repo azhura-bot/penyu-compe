@@ -10,7 +10,7 @@ const footerNavItems = [
 ]
 
 const footerActionItems = [
-  { label: 'Ayo Berkontribusi', href: '/#kontak', type: 'anchor' },
+  { label: 'Hubungi Kami', href: '/kontak', type: 'route' },
   { label: 'Dokumentasi Kami', href: '/tentang', type: 'route' },
 ]
 
