@@ -44,7 +44,7 @@ function DocumentationSection() {
           </p>
         </div>
 
-        <div className="mx-auto mt-14 grid max-w-[58rem] place-items-center gap-y-8 sm:grid-cols-2 lg:max-w-[60rem] lg:gap-y-10 xl:max-w-[62rem] xl:grid-cols-3">
+        <div className="mx-auto mt-14 grid max-w-[58rem] place-items-center gap-8 sm:grid-cols-2 sm:gap-10 lg:max-w-[60rem] lg:gap-12 xl:max-w-[62rem] xl:grid-cols-3">
           {documentationImages.map((image, index) => (
             <DocumentationCard key={image.src} image={image} index={index} />
           ))}
