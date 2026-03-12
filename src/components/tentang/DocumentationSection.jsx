@@ -4,11 +4,17 @@ import Rectangle17Blend from '../layout/Rectangle17Blend'
 
 function DocumentationCard({ image, index }) {
   return (
-    <article className="overflow-hidden rounded-[1.2rem] border-2 border-white/75 shadow-[0_18px_36px_rgba(0,0,0,0.35)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_26px_44px_rgba(0,0,0,0.45)]">
+    <article className="group w-full max-w-[17rem] overflow-hidden rounded-[1rem] border-2 border-white/75 shadow-[0_16px_32px_rgba(0,0,0,0.32)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_40px_rgba(0,0,0,0.42)] sm:max-w-[18rem] lg:max-w-[19rem]">
       <img
-        src={image}
-        alt={`Dokumentasi ${index + 1}`}
-        className="aspect-square w-full object-cover transition duration-500 hover:scale-[1.03]"
+        src={image.src}
+        alt={image.alt ?? `Dokumentasi ${index + 1}`}
+        className="aspect-square w-full object-cover [transform:scale(var(--doc-scale))] [transform-origin:var(--doc-origin)] transition duration-500 ease-out group-hover:[transform:scale(var(--doc-hover-scale))]"
+        style={{
+          objectPosition: `${image.focusX ?? '50%'} ${image.focusY ?? '50%'}`,
+          '--doc-origin': `${image.focusX ?? '50%'} ${image.focusY ?? '50%'}`,
+          '--doc-scale': String(image.zoom ?? 1.12),
+          '--doc-hover-scale': String((image.zoom ?? 1.12) + 0.03),
+        }}
       />
     </article>
   )
@@ -38,9 +44,9 @@ function DocumentationSection() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="mx-auto mt-14 grid max-w-[58rem] place-items-center gap-y-8 sm:grid-cols-2 lg:max-w-[60rem] lg:gap-y-10 xl:max-w-[62rem] xl:grid-cols-3">
           {documentationImages.map((image, index) => (
-            <DocumentationCard key={image} image={image} index={index} />
+            <DocumentationCard key={image.src} image={image} index={index} />
           ))}
         </div>
       </div>

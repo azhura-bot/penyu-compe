@@ -1,6 +1,7 @@
 import AboutHeroSection from '../components/tentang/AboutHeroSection'
 import DocumentationSection from '../components/tentang/DocumentationSection'
 import VisionMissionSection from '../components/tentang/VisionMissionSection'
+import Footer from '../components/layout/Footer'
 import Navbar from '../components/layout/Navbar'
 
 function Tentang() {
@@ -10,6 +11,7 @@ function Tentang() {
       <AboutHeroSection />
       <VisionMissionSection />
       <DocumentationSection />
+      <Footer />
     </main>
   )
 }

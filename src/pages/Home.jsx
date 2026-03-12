@@ -21,6 +21,7 @@ import HomeLoadingScreen from '../components/home/HomeLoadingScreen'
 import ProgramSection from '../components/home/ProgramSection'
 import ThreatSection from '../components/home/ThreatSection'
 import WhySection from '../components/home/WhySection'
+import Footer from '../components/layout/Footer'
 import Navbar from '../components/layout/Navbar'
 
 const HOME_IMAGE_ASSETS = [
@@ -139,6 +140,7 @@ function Home() {
       <ThreatSection />
       <ProgramSection />
       <ContactSection />
+      <Footer />
     </main>
   )
 }

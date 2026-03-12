@@ -1,4 +1,3 @@
-import arrowIcon from '../../assets/homepage/arrow.svg'
 import heroBg from '../../assets/homepage/hero-bg.jpg'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
 
@@ -34,10 +33,26 @@ function HeroSection() {
 
             <a
               href="#tentang-penyu"
-              className="mt-8 inline-flex items-center gap-3 rounded-full border-2 border-[#ffd900] px-6 py-3 text-sm font-bold text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.45)] transition hover:bg-[#ffd900] hover:text-[#03114f] sm:text-base"
+              className="group mt-8 inline-flex items-center gap-3 rounded-full border-2 border-[#ffd900] px-6 py-3 text-sm font-bold text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.45)] transition hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f] sm:text-base"
             >
               <span>Tentang Penyu</span>
-              <img src={arrowIcon} alt="" aria-hidden="true" className="h-4 w-4" />
+              <span
+                aria-hidden="true"
+                className="text-[#ffd900] transition group-hover:text-white"
+              >
+                <svg
+                  viewBox="0 0 36.1426 32.1422"
+                  className="h-4 w-4"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 16.0711H34M34 16.0711L18.7 1.07111M34 16.0711L18.7 31.0711"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                  />
+                </svg>
+              </span>
             </a>
           </div>
         </div>

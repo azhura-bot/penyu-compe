@@ -2,17 +2,32 @@ import threatBg from '../../assets/homepage/threat-bg.jpg'
 import { threatCards } from '../../data/home'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
 
-function ThreatCard({ title, image }) {
+function ThreatCard({ title, description, image }) {
   return (
-    <article className="group relative overflow-hidden rounded-[1.35rem] border border-white/70 shadow-[0_22px_50px_rgba(0,0,0,0.35)]">
-      <img
-        src={image}
-        alt={title}
-        className="h-56 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-64"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#03114f]/70 via-transparent to-transparent" />
-      <div className="absolute inset-x-4 bottom-4 rounded-full border border-white/80 bg-white/20 px-4 py-2 text-center text-sm font-bold shadow-[0_20px_40px_rgba(0,0,0,0.25)] backdrop-blur-sm sm:text-base">
-        {title}
+    <article className="group relative isolate overflow-hidden rounded-[1.35rem] bg-[#03114f] shadow-[0_22px_50px_rgba(0,0,0,0.35)]">
+      <div className="h-64 sm:h-72" />
+
+      <div className="absolute inset-0 transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-10 group-hover:opacity-0">
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,16,58,0.28)_0%,rgba(4,30,101,0.42)_35%,rgba(3,17,79,0.86)_100%)]" />
+        <div className="absolute inset-x-5 bottom-5 text-left text-base font-bold leading-tight text-white text-shadow-[0_4px_18px_rgba(0,0,0,0.82)] sm:inset-x-6 sm:bottom-6 sm:text-[1.15rem]">
+          {title}
+        </div>
+      </div>
+
+      <div className="absolute inset-0 translate-x-[-100%] bg-[linear-gradient(180deg,rgba(6,40,111,0.52)_0%,rgba(7,74,159,0.96)_38%,rgba(3,39,115,1)_100%)] transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0" />
+
+      <div className="absolute inset-0 flex translate-x-[-100%] flex-col justify-end p-5 transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 sm:p-6">
+        <div className="rounded-[1.2rem] border border-white/18 bg-[#0a4d9c]/62 p-5 shadow-[0_24px_44px_rgba(0,0,0,0.24)] backdrop-blur-sm">
+          <h3 className="text-lg font-bold leading-tight text-white sm:text-[1.35rem]">{title}</h3>
+          <p className="mt-3 text-sm leading-6 text-white/88 sm:text-[0.98rem]">
+            {description}
+          </p>
+        </div>
       </div>
     </article>
   )
