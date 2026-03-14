@@ -1,45 +1,51 @@
-import heroBg from '../../assets/homepage/hero-bg.jpg'
-import Rectangle17Blend from '../layout/Rectangle17Blend'
+import seaTurtleVideo from '../../assets/homepage/sea-turtle.mp4';
 
-function HeroSection() {
+const Index = () => {
   return (
     <section
       id="beranda"
-      className="relative isolate min-h-screen overflow-visible"
+      className="relative isolate min-h-screen overflow-hidden"
     >
-      <img
-        src={heroBg}
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover object-center"
-      />
+      {/* Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src={seaTurtleVideo} type="video/mp4" />
+      </video>
+
+      {/* Gradient Overlays */}
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,13,109,0.28)_0%,rgba(0,13,109,0.5)_55%,rgba(3,17,79,0.94)_100%)]" />
       <div className="pointer-events-none absolute inset-x-[-6%] bottom-[-2.5rem] h-40 w-[112%] bg-[linear-gradient(180deg,rgba(3,17,79,0)_0%,rgba(3,17,79,0.36)_30%,rgba(3,17,79,0.82)_72%,rgba(3,17,79,0.98)_100%)] blur-[44px]" />
       <div className="pointer-events-none absolute inset-x-[-10%] bottom-[-3.25rem] h-28 w-[120%] bg-[radial-gradient(ellipse_at_center,rgba(0,13,109,0.74)_0%,rgba(0,13,109,0.46)_42%,rgba(0,13,109,0.12)_68%,rgba(0,13,109,0)_84%)] blur-[52px]" />
-      <Rectangle17Blend position="bottom" />
 
-      <div className="relative z-20 mx-auto flex min-h-screen w-full max-w-[92rem] flex-col px-6 pb-16 pt-28 sm:px-8 sm:pt-32 lg:px-12 lg:pb-24 lg:pt-36 xl:px-16">
-        <div className="flex flex-1 items-center py-16 sm:py-20 lg:py-28">
+      {/* Content */}
+      <div className="relative mx-auto flex min-h-screen w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+        <div className="w-full py-12 md:py-16 lg:py-20">
           <div className="max-w-2xl">
-            <h1 className="font-display max-w-xl text-4xl leading-tight text-shadow-[0_4px_8px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl">
+           
+
+            {/* Main Content */}
+            <h1 className="text-4xl font-bold leading-tight text-white [text-shadow:0_4px_8px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl">
               Selamatkan Penyu, Selamatkan Masa Depan Laut
             </h1>
 
-            <p className="mt-5 max-w-xl text-sm leading-7 text-white/90 text-shadow-[0_4px_24px_rgba(0,0,0,0.8)] sm:text-base lg:text-lg">
-              Penyu sudah menjelajahi lautan sejak jutaan tahun lalu, jauh sebelum manusia mengenal peradaban.
-              Mereka terus kembali ke pantai yang sama untuk bertelur, menjaga siklus hidup yang luar biasa dari
-              generasi ke generasi.
+            <p className="mt-4 text-sm leading-relaxed text-white/90 [text-shadow:0_4px_24px_rgba(0,0,0,0.8)] sm:mt-6 sm:text-base lg:text-lg">
+              Penyu sudah menjelajahi lautan sejak jutaan tahun lalu, jauh 
+              sebelum manusia mengenal peradaban. Mereka terus kembali 
+              ke pantai yang sama untuk bertelur, menjaga siklus hidup yang 
+              luar biasa dari generasi ke generasi.
             </p>
 
             <a
               href="#tentang-penyu"
-              className="group mt-8 inline-flex items-center gap-3 rounded-full border-2 border-[#ffd900] px-6 py-3 text-sm font-bold text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.45)] transition hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f] sm:text-base"
+              className="group mt-6 inline-flex items-center gap-3 rounded-full border-2 border-[#ffd900] px-6 py-3 text-sm font-bold text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.45)] transition-all hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f] sm:mt-8 sm:text-base"
             >
               <span>Tentang Penyu</span>
-              <span
-                aria-hidden="true"
-                className="text-[#ffd900] transition group-hover:text-white"
-              >
+              <span className="text-[#ffd900] transition group-hover:text-white group-hover:translate-x-1">
                 <svg
                   viewBox="0 0 36.1426 32.1422"
                   className="h-4 w-4"
@@ -57,8 +63,9 @@ function HeroSection() {
           </div>
         </div>
       </div>
-    </section>
-  )
-}
 
-export default HeroSection
+    </section>
+  );
+};
+
+export default Index;
