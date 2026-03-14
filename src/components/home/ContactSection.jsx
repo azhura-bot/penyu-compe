@@ -15,7 +15,7 @@ function ContactSection() {
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,13,109,0.62)_0%,rgba(3,17,79,0.85)_100%)]" />
       <Rectangle17Blend position="top" />
 
-      <div className="relative mx-auto w-full max-w-[92rem] px-6 text-center sm:px-8 lg:px-12 xl:px-16">
+      <div className="relative z-20 mx-auto w-full max-w-[92rem] px-6 text-center sm:px-8 lg:px-12 xl:px-16">
         <h2 className="font-display text-3xl leading-tight text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl">
           <span className="text-white">Ayo </span>
           <span className="text-[#ffd900]">Ikut Berkontribusi</span>

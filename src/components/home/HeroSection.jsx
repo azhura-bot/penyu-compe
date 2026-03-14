@@ -18,7 +18,7 @@ function HeroSection() {
       <div className="pointer-events-none absolute inset-x-[-10%] bottom-[-3.25rem] h-28 w-[120%] bg-[radial-gradient(ellipse_at_center,rgba(0,13,109,0.74)_0%,rgba(0,13,109,0.46)_42%,rgba(0,13,109,0.12)_68%,rgba(0,13,109,0)_84%)] blur-[52px]" />
       <Rectangle17Blend position="bottom" />
 
-      <div className="relative mx-auto flex min-h-screen w-full max-w-[92rem] flex-col px-6 pb-16 pt-28 sm:px-8 sm:pt-32 lg:px-12 lg:pb-24 lg:pt-36 xl:px-16">
+      <div className="relative z-20 mx-auto flex min-h-screen w-full max-w-[92rem] flex-col px-6 pb-16 pt-28 sm:px-8 sm:pt-32 lg:px-12 lg:pb-24 lg:pt-36 xl:px-16">
         <div className="flex flex-1 items-center py-16 sm:py-20 lg:py-28">
           <div className="max-w-2xl">
             <h1 className="font-display max-w-xl text-4xl leading-tight text-shadow-[0_4px_8px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl">

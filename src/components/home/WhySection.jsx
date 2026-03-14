@@ -134,7 +134,7 @@ function WhySection() {
       <Rectangle17Blend position="top" />
       <Rectangle17Blend position="bottom" />
 
-      <div className="relative mx-auto grid w-full max-w-[92rem] gap-10 px-6 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-18 lg:px-12 xl:px-16">
+      <div className="relative z-20 mx-auto grid w-full max-w-[92rem] gap-10 px-6 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-18 lg:px-12 xl:px-16">
         <div className="max-w-2xl">
           <h2 className="font-display text-3xl leading-tight text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl">
             Mengapa <span className="text-[#ffd900]">Penyu Penting?</span>

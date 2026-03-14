@@ -46,7 +46,7 @@ function ThreatSection() {
       <Rectangle17Blend position="top" />
       <Rectangle17Blend position="bottom" />
 
-      <div className="relative mx-auto w-full max-w-[92rem] px-6 sm:px-8 lg:px-12 xl:px-16">
+      <div className="relative z-20 mx-auto w-full max-w-[92rem] px-6 sm:px-8 lg:px-12 xl:px-16">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="font-display text-3xl leading-tight text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl">
             <span className="text-[#ffd900]">Ancaman </span>yang Mereka Hadapi
