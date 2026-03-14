@@ -6,7 +6,7 @@ import { navItems } from '../../data/navigation'
 function NavLink({ href, label, type, active = false }) {
   const className = `nav-link font-nav ${active ? 'is-active' : ''}`
 
-  if (type === 'route') {
+  if (type === 'route' || type === 'anchor') {
     return (
       <Link to={href} className={className}>
         {label}

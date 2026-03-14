@@ -1,5 +1,7 @@
 import ctaBg from '../../assets/homepage/cta-bg.jpg'
+import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
+import Reveal from '../motion/Reveal'
 
 function ContactField({ label, id, placeholder, textarea = false, type = 'text' }) {
   const inputClassName =
@@ -62,40 +64,65 @@ function ContactPageSection() {
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,13,109,0.42)_0%,rgba(0,13,109,0.56)_26%,rgba(3,17,79,0.88)_100%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(115,184,255,0.1),rgba(115,184,255,0)_42%)]" />
+      <BubbleLayer className="z-10 opacity-85" density="dense" />
       <Rectangle17Blend position="top" />
 
       <div className="relative mx-auto w-full max-w-[92rem] px-6 sm:px-8 lg:px-12 xl:px-16">
-        <div className="overflow-hidden rounded-[2rem] border border-white/22 bg-[linear-gradient(135deg,rgba(255,255,255,0.16),rgba(255,255,255,0.04)_52%,rgba(132,198,255,0.08)_100%)] px-6 py-8 shadow-[0_30px_70px_rgba(1,11,61,0.38)] backdrop-blur-xl sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+        <Reveal
+          variant="up"
+          className="overflow-hidden rounded-[2rem] border border-white/22 bg-[linear-gradient(135deg,rgba(255,255,255,0.16),rgba(255,255,255,0.04)_52%,rgba(132,198,255,0.08)_100%)] px-6 py-8 shadow-[0_30px_70px_rgba(1,11,61,0.38)] backdrop-blur-xl sm:px-8 sm:py-10 lg:px-10 lg:py-12"
+        >
           <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1fr)] lg:gap-12">
-            <div className="flex flex-col gap-8 lg:min-h-[34rem] lg:justify-between">
+            <Reveal variant="left" delay={100} className="flex flex-col gap-8 lg:min-h-[34rem] lg:justify-between">
               <div className="max-w-lg">
-                <p className="font-display text-4xl leading-none text-[#ffd900] text-shadow-[0_6px_18px_rgba(0,0,0,0.35)] sm:text-5xl">
+                <Reveal
+                  as="p"
+                  variant="down"
+                  delay={140}
+                  className="font-display text-4xl leading-none text-[#ffd900] text-shadow-[0_6px_18px_rgba(0,0,0,0.35)] sm:text-5xl"
+                >
                   Kontak
-                </p>
-                <h1 className="mt-3 text-2xl font-semibold text-white text-shadow-[0_4px_18px_rgba(0,0,0,0.45)] sm:text-3xl">
+                </Reveal>
+                <Reveal
+                  as="h1"
+                  delay={200}
+                  className="mt-3 text-2xl font-semibold text-white text-shadow-[0_4px_18px_rgba(0,0,0,0.45)] sm:text-3xl"
+                >
                   Terhubung dengan Kami
-                </h1>
-                <p className="mt-5 max-w-xl text-justify text-sm leading-7 text-white/84 sm:text-base lg:text-lg">
+                </Reveal>
+                <Reveal
+                  as="p"
+                  delay={260}
+                  className="mt-5 max-w-xl text-justify text-sm leading-7 text-white/84 sm:text-base lg:text-lg"
+                >
                   Sampaikan pertanyaan, ide kolaborasi, atau ajakan konservasi. Kami terbuka untuk terhubung dan
                   bergerak bersama.
-                </p>
+                </Reveal>
               </div>
 
-              <div className="max-w-[32rem]">
+              <Reveal delay={320} variant="pop" className="max-w-[32rem]">
                 <ContactMapCard />
-              </div>
-            </div>
+              </Reveal>
+            </Reveal>
 
-            <div className="relative overflow-hidden rounded-[1.9rem] border border-white/26 bg-[linear-gradient(135deg,rgba(18,44,158,0.52),rgba(14,33,126,0.32)_48%,rgba(255,255,255,0.06)_100%)] p-6 shadow-[0_28px_60px_rgba(1,11,61,0.38)] backdrop-blur-2xl sm:p-8 lg:p-9">
+            <Reveal
+              variant="right"
+              delay={180}
+              className="relative overflow-hidden rounded-[1.9rem] border border-white/26 bg-[linear-gradient(135deg,rgba(18,44,158,0.52),rgba(14,33,126,0.32)_48%,rgba(255,255,255,0.06)_100%)] p-6 shadow-[0_28px_60px_rgba(1,11,61,0.38)] backdrop-blur-2xl sm:p-8 lg:p-9"
+            >
               <div className="pointer-events-none absolute right-[-3rem] top-[-2rem] h-32 w-32 rounded-full bg-[#7fd8ff]/14 blur-3xl" />
               <div className="pointer-events-none absolute bottom-[-3rem] left-[-1rem] h-28 w-28 rounded-full bg-[#ffd900]/8 blur-3xl" />
 
               <div className="relative">
-                <h2 className="font-display text-3xl text-white text-shadow-[0_4px_16px_rgba(0,0,0,0.35)] sm:text-4xl">
+                <Reveal
+                  as="h2"
+                  delay={220}
+                  className="font-display text-3xl text-white text-shadow-[0_4px_16px_rgba(0,0,0,0.35)] sm:text-4xl"
+                >
                   Form <span className="text-[#ffd900]">Kontak</span>
-                </h2>
+                </Reveal>
 
-                <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+                <Reveal as="form" delay={280} className="mt-8 space-y-5" onSubmit={handleSubmit}>
                   <ContactField id="nama" label="Nama Anda" placeholder="Masukkan nama lengkap" />
                   <ContactField id="email" label="Email" placeholder="Masukkan email aktif" type="email" />
                   <ContactField id="subjek" label="Subjek" placeholder="Tulis subjek pesan" />
@@ -112,11 +139,11 @@ function ContactPageSection() {
                   >
                     Kirim
                   </button>
-                </form>
+                </Reveal>
               </div>
-            </div>
+            </Reveal>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

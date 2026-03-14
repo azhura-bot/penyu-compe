@@ -1,4 +1,6 @@
 import seaTurtleVideo from '../../assets/homepage/sea-turtle.mp4';
+import BubbleLayer from '../layout/BubbleLayer';
+import Reveal from '../motion/Reveal';
 
 const Index = () => {
   return (
@@ -19,6 +21,7 @@ const Index = () => {
 
       {/* Gradient Overlays */}
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,13,109,0.28)_0%,rgba(0,13,109,0.5)_55%,rgba(3,17,79,0.94)_100%)]" />
+      <BubbleLayer className="z-10 opacity-100" density="dense" />
       <div className="pointer-events-none absolute inset-x-[-6%] bottom-[-2.5rem] h-40 w-[112%] bg-[linear-gradient(180deg,rgba(3,17,79,0)_0%,rgba(3,17,79,0.36)_30%,rgba(3,17,79,0.82)_72%,rgba(3,17,79,0.98)_100%)] blur-[44px]" />
       <div className="pointer-events-none absolute inset-x-[-10%] bottom-[-3.25rem] h-28 w-[120%] bg-[radial-gradient(ellipse_at_center,rgba(0,13,109,0.74)_0%,rgba(0,13,109,0.46)_42%,rgba(0,13,109,0.12)_68%,rgba(0,13,109,0)_84%)] blur-[52px]" />
 
@@ -29,19 +32,33 @@ const Index = () => {
            
 
             {/* Main Content */}
-            <h1 className="text-4xl font-bold leading-tight text-white [text-shadow:0_4px_8px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl">
+            <Reveal
+              as="h1"
+              variant="zoom"
+              distance="56px"
+              className="text-4xl font-bold leading-tight text-white [text-shadow:0_4px_8px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl"
+            >
               Selamatkan Penyu, Selamatkan Masa Depan Laut
-            </h1>
+            </Reveal>
 
-            <p className="mt-4 text-sm leading-relaxed text-white/90 [text-shadow:0_4px_24px_rgba(0,0,0,0.8)] sm:mt-6 sm:text-base lg:text-lg">
+            <Reveal
+              as="p"
+              delay={140}
+              distance="46px"
+              className="mt-4 text-sm leading-relaxed text-white/90 [text-shadow:0_4px_24px_rgba(0,0,0,0.8)] sm:mt-6 sm:text-base lg:text-lg"
+            >
               Penyu sudah menjelajahi lautan sejak jutaan tahun lalu, jauh 
               sebelum manusia mengenal peradaban. Mereka terus kembali 
               ke pantai yang sama untuk bertelur, menjaga siklus hidup yang 
               luar biasa dari generasi ke generasi.
-            </p>
+            </Reveal>
 
-            <a
+            <Reveal
+              as="a"
               href="#tentang-penyu"
+              delay={260}
+              variant="pop"
+              distance="34px"
               className="group mt-6 inline-flex items-center gap-3 rounded-full border-2 border-[#ffd900] px-6 py-3 text-sm font-bold text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.45)] transition-all hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f] sm:mt-8 sm:text-base"
             >
               <span>Tentang Penyu</span>
@@ -59,7 +76,7 @@ const Index = () => {
                   />
                 </svg>
               </span>
-            </a>
+            </Reveal>
           </div>
         </div>
       </div>

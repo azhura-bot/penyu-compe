@@ -145,6 +145,91 @@ a {
   animation: home-loader-line 1.8s ease-in-out infinite;
 }
 
+.reveal {
+  opacity: 0;
+  will-change: transform, opacity, filter;
+  transition:
+    opacity var(--reveal-duration, 850ms) cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    transform var(--reveal-duration, 850ms) cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    filter var(--reveal-duration, 850ms) cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+}
+
+.reveal-up {
+  transform: translate3d(0, var(--reveal-distance, 42px), 0);
+}
+
+.reveal-down {
+  transform: translate3d(0, calc(var(--reveal-distance, 42px) * -1), 0);
+}
+
+.reveal-left {
+  transform: translate3d(calc(var(--reveal-distance, 42px) * -1), 0, 0);
+}
+
+.reveal-right {
+  transform: translate3d(var(--reveal-distance, 42px), 0, 0);
+}
+
+.reveal-zoom {
+  filter: blur(10px);
+  transform: translate3d(0, calc(var(--reveal-distance, 42px) * 0.45), 0) scale(0.92);
+}
+
+.reveal-pop {
+  filter: blur(6px);
+  transform: translate3d(0, calc(var(--reveal-distance, 42px) * 0.25), 0) scale(0.96);
+}
+
+.reveal-tilt-left {
+  filter: blur(8px);
+  transform: translate3d(calc(var(--reveal-distance, 42px) * -0.4), calc(var(--reveal-distance, 42px) * 0.35), 0) rotate(-2.5deg) scale(0.96);
+}
+
+.reveal-tilt-right {
+  filter: blur(8px);
+  transform: translate3d(calc(var(--reveal-distance, 42px) * 0.4), calc(var(--reveal-distance, 42px) * 0.35), 0) rotate(2.5deg) scale(0.96);
+}
+
+.bubble-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bubble-particle {
+  position: absolute;
+  left: var(--bubble-left);
+  bottom: -12%;
+  width: var(--bubble-size);
+  height: var(--bubble-size);
+  border-radius: 999px;
+  opacity: var(--bubble-opacity, 0.2);
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.98) 0%, rgba(225, 247, 255, 0.82) 18%, rgba(145, 220, 255, 0.28) 54%, rgba(126, 212, 255, 0) 76%);
+  box-shadow:
+    inset -1px -1px 5px rgba(126, 212, 255, 0.22),
+    inset 1px 1px 6px rgba(255, 255, 255, 0.62),
+    0 0 16px rgba(164, 227, 255, 0.2);
+  animation: bubble-rise var(--bubble-duration, 15s) linear var(--bubble-delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+.bubble-particle::after {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  opacity: 0.65;
+}
+
 @keyframes home-loader-spin {
   from {
     transform: rotate(0deg);
@@ -169,5 +254,40 @@ a {
   100% {
     transform: translateX(60%) scaleX(0.35);
     opacity: 0.28;
+  }
+}
+
+@keyframes bubble-rise {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.72);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: var(--bubble-opacity, 0.2);
+  }
+
+  55% {
+    transform: translate3d(var(--bubble-drift, 10px), -56vh, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(calc(var(--bubble-drift, 10px) * -0.6), -112vh, 0) scale(1.15);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+
+  .bubble-particle {
+    animation: none;
+    opacity: 0.12;
   }
 }

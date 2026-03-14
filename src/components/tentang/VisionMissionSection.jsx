@@ -1,6 +1,8 @@
 import visionBg from '../../assets/tentang/vision-bg.png'
 import { missionItems } from '../../data/tentang'
+import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
+import Reveal from '../motion/Reveal'
 
 function GlassPanel({ children, className = '' }) {
   return (
@@ -22,11 +24,12 @@ function VisionMissionSection() {
         className="absolute inset-0 h-full w-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,13,109,0.54)_0%,rgba(0,13,109,0.48)_36%,rgba(3,17,79,0.72)_100%)]" />
+      <BubbleLayer className="z-10 opacity-85" density="dense" />
       <Rectangle17Blend position="top" />
       <Rectangle17Blend position="bottom" />
 
       <div className="relative z-20 mx-auto flex w-full max-w-[92rem] flex-col gap-10 px-6 sm:px-8 lg:px-12 xl:px-16">
-        <div className="ml-auto w-full max-w-[36rem]">
+        <Reveal variant="right" className="ml-auto w-full max-w-[36rem]">
           <h2 className="font-display text-3xl text-shadow-[0_4px_14px_rgba(0,0,0,0.5)] sm:text-4xl lg:text-5xl">
             <span className="text-[#ffd900]">Visi </span>
             <span className="text-white">Kami</span>
@@ -38,9 +41,9 @@ function VisionMissionSection() {
               bertelur dan hidup untuk generasi mendatang.
             </p>
           </GlassPanel>
-        </div>
+        </Reveal>
 
-        <div className="w-full max-w-[78rem]">
+        <Reveal delay={160} variant="left" className="w-full max-w-[78rem]">
           <h2 className="font-display text-3xl text-shadow-[0_4px_14px_rgba(0,0,0,0.5)] sm:text-4xl lg:text-5xl">
             <span className="text-[#ffd900]">Misi </span>
             <span className="text-white">Kami</span>
@@ -56,7 +59,7 @@ function VisionMissionSection() {
               ))}
             </ol>
           </GlassPanel>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

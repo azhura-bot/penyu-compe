@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import homeLogo from '../../assets/image.png'
+import BubbleLayer from './BubbleLayer'
 
 const footerNavItems = [
   { label: 'Beranda', href: '/', type: 'route' },
@@ -38,6 +39,7 @@ function Footer() {
 
   return (
     <footer className="relative isolate overflow-hidden border-t border-white/10 bg-[radial-gradient(circle_at_top,rgba(84,191,255,0.18),transparent_28%),linear-gradient(180deg,#04104a_0%,#020d35_100%)]">
+      <BubbleLayer className="z-0 opacity-85" density="dense" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,rgba(255,255,255,0),rgba(143,220,255,0.8),rgba(255,255,255,0))]" />
       <div className="pointer-events-none absolute left-1/2 top-0 h-24 w-[24rem] -translate-x-1/2 rounded-full bg-[#59cfff]/16 blur-3xl" />
       <div className="pointer-events-none absolute -left-16 bottom-0 h-40 w-40 rounded-full bg-[#0a46a5]/24 blur-3xl" />
