@@ -23,6 +23,7 @@ import ThreatSection from '../components/home/ThreatSection'
 import WhySection from '../components/home/WhySection'
 import Footer from '../components/layout/Footer'
 import Navbar from '../components/layout/Navbar'
+import MusicPlayer from '../components/layout/MusicPlayer'
 
 const HOME_IMAGE_ASSETS = [
   homeLogo,
@@ -141,6 +142,7 @@ function Home() {
       <ProgramSection />
       <ContactSection />
       <Footer />
+      <MusicPlayer /> 
     </main>
   )
 }

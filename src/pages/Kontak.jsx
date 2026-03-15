@@ -1,6 +1,7 @@
 import ContactPageSection from '../components/kontak/ContactPageSection'
 import Footer from '../components/layout/Footer'
 import Navbar from '../components/layout/Navbar'
+import MusicPlayer from '../components/layout/MusicPlayer'
 
 function Kontak() {
   return (
@@ -8,6 +9,7 @@ function Kontak() {
       <Navbar activeLabel="Kontak" />
       <ContactPageSection />
       <Footer />
+      <MusicPlayer /> 
     </main>
   )
 }

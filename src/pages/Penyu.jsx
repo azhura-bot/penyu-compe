@@ -1,6 +1,8 @@
 import PenyuSection from '../components/home/PenyuSection'
 import Footer from '../components/layout/Footer'
 import Navbar from '../components/layout/Navbar'
+import MusicPlayer from '../components/layout/MusicPlayer'
+
 
 function Penyu() {
   return (
@@ -8,6 +10,7 @@ function Penyu() {
       <Navbar activeLabel="Penyu" />
       <PenyuSection />
       <Footer />
+      <MusicPlayer /> 
     </main>
   )
 }
