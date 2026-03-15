@@ -2,13 +2,29 @@ import { Link } from 'react-router-dom'
 
 import searchIcon from '../../assets/homepage/search.svg'
 import { navItems } from '../../data/navigation'
+import { warmTentangPage } from '../../utils/routePreload'
 
 function NavLink({ href, label, type, active = false }) {
   const className = `nav-link font-nav ${active ? 'is-active' : ''}`
+  const shouldPrefetchTentang = href === '/tentang'
+
+  const handlePrefetch = () => {
+    if (!shouldPrefetchTentang) {
+      return
+    }
+
+    warmTentangPage({ full: true })
+  }
 
   if (type === 'route' || type === 'anchor') {
     return (
-      <Link to={href} className={className}>
+      <Link
+        to={href}
+        className={className}
+        onMouseEnter={handlePrefetch}
+        onFocus={handlePrefetch}
+        onPointerDown={handlePrefetch}
+      >
         {label}
       </Link>
     )

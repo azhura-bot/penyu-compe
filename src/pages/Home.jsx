@@ -6,6 +6,7 @@ import Footer from '../components/layout/Footer'
 import Navbar from '../components/layout/Navbar'
 import MusicPlayer from '../components/layout/MusicPlayer'
 import DeferredSection from '../components/performance/DeferredSection'
+import { warmTentangPage } from '../utils/routePreload'
 
 const WhySection = lazy(() => import('../components/home/WhySection'))
 const ThreatSection = lazy(() => import('../components/home/ThreatSection'))
@@ -31,9 +32,33 @@ function Home() {
 
   useEffect(() => {
     if (isHeroExperienceReady) {
-      return undefined
+      let timeoutId = 0
+      let idleCallbackId = 0
+
+      const preloadTentangGallery = () => {
+        warmTentangPage({ full: true })
+      }
+
+      if ('requestIdleCallback' in window) {
+        idleCallbackId = window.requestIdleCallback(preloadTentangGallery, { timeout: 2200 })
+      } else {
+        timeoutId = window.setTimeout(preloadTentangGallery, 1200)
+      }
+
+      warmTentangPage()
+
+      return () => {
+        if (idleCallbackId) {
+          window.cancelIdleCallback(idleCallbackId)
+        }
+
+        if (timeoutId) {
+          window.clearTimeout(timeoutId)
+        }
+      }
     }
 
+    warmTentangPage()
     startedAtRef.current = performance.now()
     document.body.style.overflow = 'hidden'
 
@@ -44,7 +69,7 @@ function Home() {
 
   const finishHeroPreparation = () => {
     if (hasClosedLoaderRef.current) {
-      return
+      return undefined
     }
 
     hasClosedLoaderRef.current = true
