@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import heroPoster from '../../assets/homepage/hero-bg.jpg'
-import seaTurtleVideo from '../../assets/homepage/sea-turtle.mp4'
+import seaTurtleVideo from '../../assets/homepage/sea-turtle.webm'
 import BubbleLayer from '../layout/BubbleLayer'
 import Reveal from '../motion/Reveal'
 
