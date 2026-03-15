@@ -1,15 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import heroPoster from '../../assets/homepage/hero-bg.jpg'
 import seaTurtleVideo from '../../assets/homepage/sea-turtle.mp4'
 import BubbleLayer from '../layout/BubbleLayer'
 import Reveal from '../motion/Reveal'
 
-const Index = () => {
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
+function HeroSection({ prioritizeVideo = false, onVideoReady }) {
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(prioritizeVideo)
   const [isVideoReady, setIsVideoReady] = useState(false)
+  const hasNotifiedReadyRef = useRef(false)
 
   useEffect(() => {
+    if (prioritizeVideo) {
+      return undefined
+    }
+
     let timeoutId = 0
     let idleCallbackId = 0
 
@@ -30,7 +35,18 @@ const Index = () => {
         window.clearTimeout(timeoutId)
       }
     }
-  }, [])
+  }, [prioritizeVideo])
+
+  const handleVideoReady = () => {
+    setIsVideoReady(true)
+
+    if (hasNotifiedReadyRef.current) {
+      return
+    }
+
+    hasNotifiedReadyRef.current = true
+    onVideoReady?.()
+  }
 
   return (
     <section
@@ -51,12 +67,12 @@ const Index = () => {
           loop
           muted
           playsInline
-          preload="none"
+          preload={prioritizeVideo ? 'auto' : 'none'}
           poster={heroPoster}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
             isVideoReady ? 'opacity-100' : 'opacity-0'
           }`}
-          onCanPlay={() => setIsVideoReady(true)}
+          onCanPlay={handleVideoReady}
         >
           <source src={seaTurtleVideo} type="video/mp4" />
         </video>
@@ -123,4 +139,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default HeroSection
