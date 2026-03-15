@@ -1,32 +1,49 @@
-// src/components/layout/MusicPlayer.jsx
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react'
 
 export default function MusicPlayer() {
-  const audioRef = useRef(null);
+  const audioRef = useRef(null)
+  const hasStartedRef = useRef(false)
 
   useEffect(() => {
-    const audio = audioRef.current;
-    
-    if (audio) {
-      // Coba play
-      audio.volume = 0.3;
-      
-      const playPromise = audio.play();
-      
+    const audio = audioRef.current
+
+    if (!audio) {
+      return undefined
+    }
+
+    audio.volume = 0.3
+
+    const startPlayback = () => {
+      if (hasStartedRef.current) {
+        return
+      }
+
+      hasStartedRef.current = true
+
+      const playPromise = audio.play()
+
       if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log("Autoplay gagal:", error);
-          // Browser block autoplay
-        });
+        playPromise.catch(() => {
+          hasStartedRef.current = false
+        })
       }
     }
-  }, []);
+
+    window.addEventListener('pointerdown', startPlayback, { once: true, passive: true })
+    window.addEventListener('keydown', startPlayback, { once: true })
+
+    return () => {
+      window.removeEventListener('pointerdown', startPlayback)
+      window.removeEventListener('keydown', startPlayback)
+    }
+  }, [])
 
   return (
-    <audio 
+    <audio
       ref={audioRef}
-      src="/music/music.mp3"  // ← GANTI DENGAN NAMA FILE ANDA
+      src="/music/music.mp3"
+      preload="none"
       loop
     />
-  );
+  )
 }

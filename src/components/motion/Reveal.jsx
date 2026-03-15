@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 function Reveal({
-  as: Tag = 'div',
+  as: Component = 'div',
   children,
   className = '',
   variant = 'up',
@@ -57,14 +57,14 @@ function Reveal({
   }
 
   return (
-    <Tag
+    <Component
       ref={elementRef}
       className={`reveal reveal-${variant} ${isVisible ? 'is-visible' : ''} ${className}`.trim()}
       style={style}
       {...props}
     >
       {children}
-    </Tag>
+    </Component>
   )
 }
 

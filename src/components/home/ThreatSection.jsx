@@ -19,6 +19,8 @@ function ThreatCard({ title, description, image, index }) {
         <img
           src={image}
           alt={title}
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,11,28,0.14)_0%,rgba(5,14,38,0.22)_34%,rgba(3,17,79,0.58)_100%)]" />
@@ -48,6 +50,8 @@ function ThreatSection() {
         src={threatBg}
         alt=""
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,17,79,0.62)_0%,rgba(3,17,79,0.4)_26%,rgba(2,10,38,0.72)_100%)]" />

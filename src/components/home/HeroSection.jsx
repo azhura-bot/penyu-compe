@@ -1,37 +1,75 @@
-import seaTurtleVideo from '../../assets/homepage/sea-turtle.mp4';
-import BubbleLayer from '../layout/BubbleLayer';
-import Reveal from '../motion/Reveal';
+import { useEffect, useState } from 'react'
+
+import heroPoster from '../../assets/homepage/hero-bg.jpg'
+import seaTurtleVideo from '../../assets/homepage/sea-turtle.mp4'
+import BubbleLayer from '../layout/BubbleLayer'
+import Reveal from '../motion/Reveal'
 
 const Index = () => {
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
+  const [isVideoReady, setIsVideoReady] = useState(false)
+
+  useEffect(() => {
+    let timeoutId = 0
+    let idleCallbackId = 0
+
+    const loadVideo = () => setShouldLoadVideo(true)
+
+    if ('requestIdleCallback' in window) {
+      idleCallbackId = window.requestIdleCallback(loadVideo, { timeout: 1600 })
+    } else {
+      timeoutId = window.setTimeout(loadVideo, 900)
+    }
+
+    return () => {
+      if (idleCallbackId) {
+        window.cancelIdleCallback(idleCallbackId)
+      }
+
+      if (timeoutId) {
+        window.clearTimeout(timeoutId)
+      }
+    }
+  }, [])
+
   return (
     <section
       id="beranda"
       className="relative isolate min-h-screen overflow-hidden"
     >
-      {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
+      <img
+        src={heroPoster}
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
         className="absolute inset-0 h-full w-full object-cover"
-      >
-        <source src={seaTurtleVideo} type="video/mp4" />
-      </video>
+      />
 
-      {/* Gradient Overlays */}
+      {shouldLoadVideo && (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="none"
+          poster={heroPoster}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+            isVideoReady ? 'opacity-100' : 'opacity-0'
+          }`}
+          onCanPlay={() => setIsVideoReady(true)}
+        >
+          <source src={seaTurtleVideo} type="video/mp4" />
+        </video>
+      )}
+
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,13,109,0.28)_0%,rgba(0,13,109,0.5)_55%,rgba(3,17,79,0.94)_100%)]" />
-      <BubbleLayer className="z-10 opacity-100" density="dense" />
+      <BubbleLayer className="z-10 opacity-100" density="light" />
       <div className="pointer-events-none absolute inset-x-[-6%] bottom-[-2.5rem] h-40 w-[112%] bg-[linear-gradient(180deg,rgba(3,17,79,0)_0%,rgba(3,17,79,0.36)_30%,rgba(3,17,79,0.82)_72%,rgba(3,17,79,0.98)_100%)] blur-[44px]" />
       <div className="pointer-events-none absolute inset-x-[-10%] bottom-[-3.25rem] h-28 w-[120%] bg-[radial-gradient(ellipse_at_center,rgba(0,13,109,0.74)_0%,rgba(0,13,109,0.46)_42%,rgba(0,13,109,0.12)_68%,rgba(0,13,109,0)_84%)] blur-[52px]" />
 
-      {/* Content */}
       <div className="relative mx-auto flex min-h-screen w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
         <div className="w-full py-12 md:py-16 lg:py-20">
           <div className="max-w-2xl">
-           
-
-            {/* Main Content */}
             <Reveal
               as="h1"
               variant="zoom"
@@ -82,7 +120,7 @@ const Index = () => {
       </div>
 
     </section>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

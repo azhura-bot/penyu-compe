@@ -93,7 +93,7 @@ function TurtleLoopVideo() {
       <video
         ref={sourceVideoRef}
         src={turtleSwim}
-        preload="auto"
+        preload="metadata"
         autoPlay
         loop
         muted
@@ -104,7 +104,7 @@ function TurtleLoopVideo() {
       {!isReady && (
         <video
           src={turtleSwim}
-          preload="auto"
+          preload="metadata"
           autoPlay
           loop
           muted
@@ -124,12 +124,48 @@ function TurtleLoopVideo() {
 }
 
 function WhySection() {
+  const sectionRef = useRef(null)
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
+
+  useEffect(() => {
+    const section = sectionRef.current
+
+    if (!section || shouldLoadVideo) {
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          return
+        }
+
+        setShouldLoadVideo(true)
+        observer.disconnect()
+      },
+      {
+        rootMargin: '240px 0px',
+        threshold: 0.01,
+      },
+    )
+
+    observer.observe(section)
+
+    return () => observer.disconnect()
+  }, [shouldLoadVideo])
+
   return (
-    <section id="tentang-penyu" className="section-overlap relative isolate flex min-h-screen items-center overflow-visible pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
+    <section
+      id="tentang-penyu"
+      ref={sectionRef}
+      className="section-overlap relative isolate flex min-h-screen items-center overflow-visible pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52"
+    >
       <img
         src={whyBg}
         alt=""
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,17,79,0.72)_0%,rgba(3,17,79,0.42)_18%,rgba(3,17,79,0.64)_100%)]" />
@@ -164,7 +200,7 @@ function WhySection() {
         <Reveal variant="right" delay={200} className="relative">
           <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ffd900]/15 blur-3xl sm:h-60 sm:w-60" />
           <div className="relative mx-auto w-full max-w-[22rem] sm:max-w-[24rem] lg:max-w-[27rem]">
-            <TurtleLoopVideo />
+            {shouldLoadVideo ? <TurtleLoopVideo /> : <div aria-hidden="true" className="aspect-square w-full" />}
           </div>
         </Reveal>
       </div>

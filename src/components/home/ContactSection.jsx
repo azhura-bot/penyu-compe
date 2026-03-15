@@ -12,6 +12,8 @@ function ContactSection() {
         src={ctaBg}
         alt=""
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,13,109,0.62)_0%,rgba(3,17,79,0.85)_100%)]" />

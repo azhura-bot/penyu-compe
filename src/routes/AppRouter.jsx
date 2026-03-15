@@ -1,10 +1,14 @@
-import { useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 
-import Home from '../pages/Home'
-import Kontak from '../pages/Kontak'
-import Penyu from '../pages/Penyu'
-import Tentang from '../pages/Tentang'
+const Home = lazy(() => import('../pages/Home'))
+const Penyu = lazy(() => import('../pages/Penyu'))
+const Kontak = lazy(() => import('../pages/Kontak'))
+const Tentang = lazy(() => import('../pages/Tentang'))
+
+function RouteFallback() {
+  return <main className="min-h-screen bg-[#03114f]" />
+}
 
 function ScrollManager() {
   const { pathname, hash } = useLocation()
@@ -36,12 +40,14 @@ function AppRouter() {
   return (
     <BrowserRouter>
       <ScrollManager />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/penyu" element={<Penyu />} />
-        <Route path="/kontak" element={<Kontak />} />
-        <Route path="/tentang" element={<Tentang />} />
-      </Routes>
+      <Suspense fallback={<RouteFallback />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/penyu" element={<Penyu />} />
+          <Route path="/kontak" element={<Kontak />} />
+          <Route path="/tentang" element={<Tentang />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   )
 }

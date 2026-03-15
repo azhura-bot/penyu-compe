@@ -21,11 +21,13 @@ function TurtleModel({ highlightedPartId, autoRotate = true }) {
 
   const model = useMemo(() => {
     const clone = obj.clone(true)
+    const diffuseTexture = texture.clone()
     const box = new Box3().setFromObject(clone)
     const size = new Vector3()
     const center = new Vector3()
 
-    texture.colorSpace = SRGBColorSpace
+    diffuseTexture.colorSpace = SRGBColorSpace
+    diffuseTexture.needsUpdate = true
 
     box.getSize(size)
     box.getCenter(center)
@@ -46,7 +48,7 @@ function TurtleModel({ highlightedPartId, autoRotate = true }) {
       child.receiveShadow = true
 
       const nextMaterial = new MeshStandardMaterial({
-        map: texture,
+        map: diffuseTexture,
         color: '#ffe2b0',
         roughness: 0.84,
         metalness: 0.02,
