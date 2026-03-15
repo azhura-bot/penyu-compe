@@ -11,7 +11,6 @@ const WhySection = lazy(() => import('../components/home/WhySection'))
 const ThreatSection = lazy(() => import('../components/home/ThreatSection'))
 const ProgramSection = lazy(() => import('../components/home/ProgramSection'))
 const ContactSectionLazy = lazy(() => import('../components/home/ContactSection'))
-const HERO_LOADER_MAX_DURATION = 2200
 const HERO_LOADER_MIN_DURATION = 700
 
 let hasPreparedHeroVideo = false
@@ -29,7 +28,6 @@ function Home() {
   const [isHeroExperienceReady, setIsHeroExperienceReady] = useState(() => hasPreparedHeroVideo)
   const startedAtRef = useRef(0)
   const hasClosedLoaderRef = useRef(hasPreparedHeroVideo)
-  const loaderTimeoutRef = useRef(0)
 
   useEffect(() => {
     if (isHeroExperienceReady) {
@@ -39,26 +37,17 @@ function Home() {
     startedAtRef.current = performance.now()
     document.body.style.overflow = 'hidden'
 
-    loaderTimeoutRef.current = window.setTimeout(() => {
-      hasClosedLoaderRef.current = true
-      hasPreparedHeroVideo = true
-      document.body.style.overflow = ''
-      setIsHeroExperienceReady(true)
-    }, HERO_LOADER_MAX_DURATION)
-
     return () => {
-      window.clearTimeout(loaderTimeoutRef.current)
       document.body.style.overflow = ''
     }
   }, [isHeroExperienceReady])
 
-  const handleHeroReady = () => {
+  const finishHeroPreparation = () => {
     if (hasClosedLoaderRef.current) {
       return
     }
 
     hasClosedLoaderRef.current = true
-    window.clearTimeout(loaderTimeoutRef.current)
     const elapsed = performance.now() - startedAtRef.current
     const remainingDelay = Math.max(0, HERO_LOADER_MIN_DURATION - elapsed)
 
@@ -75,7 +64,8 @@ function Home() {
       <Navbar activeLabel="Beranda" />
       <HeroSection
         prioritizeVideo={!hasPreparedHeroVideo}
-        onVideoReady={!hasPreparedHeroVideo ? handleHeroReady : undefined}
+        onVideoReady={!hasPreparedHeroVideo ? finishHeroPreparation : undefined}
+        onVideoError={!hasPreparedHeroVideo ? finishHeroPreparation : undefined}
       />
       <DeferredSection fallback={<SectionFallback />} minHeight="100vh">
         <Suspense fallback={<SectionFallback />}>

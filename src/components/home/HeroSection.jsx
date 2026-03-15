@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 
-import heroPoster from '../../assets/homepage/hero-bg.jpg'
 import seaTurtleVideo from '../../assets/homepage/sea-turtle.webm'
 import BubbleLayer from '../layout/BubbleLayer'
 import Reveal from '../motion/Reveal'
 
-function HeroSection({ prioritizeVideo = false, onVideoReady }) {
+function HeroSection({ prioritizeVideo = false, onVideoReady, onVideoError }) {
   const [shouldLoadVideo, setShouldLoadVideo] = useState(prioritizeVideo)
-  const [isVideoReady, setIsVideoReady] = useState(false)
   const hasNotifiedReadyRef = useRef(false)
 
   useEffect(() => {
@@ -38,8 +36,6 @@ function HeroSection({ prioritizeVideo = false, onVideoReady }) {
   }, [prioritizeVideo])
 
   const handleVideoReady = () => {
-    setIsVideoReady(true)
-
     if (hasNotifiedReadyRef.current) {
       return
     }
@@ -48,18 +44,16 @@ function HeroSection({ prioritizeVideo = false, onVideoReady }) {
     onVideoReady?.()
   }
 
+  const handleVideoError = () => {
+    onVideoError?.()
+  }
+
   return (
     <section
       id="beranda"
       className="relative isolate min-h-screen overflow-hidden"
     >
-      <img
-        src={heroPoster}
-        alt=""
-        aria-hidden="true"
-        fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+      <div className="absolute inset-0 bg-[#02103f]" />
 
       {shouldLoadVideo && (
         <video
@@ -68,13 +62,12 @@ function HeroSection({ prioritizeVideo = false, onVideoReady }) {
           muted
           playsInline
           preload={prioritizeVideo ? 'auto' : 'none'}
-          poster={heroPoster}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-            isVideoReady ? 'opacity-100' : 'opacity-0'
-          }`}
+          className="absolute inset-0 h-full w-full object-cover"
+          onLoadedData={handleVideoReady}
           onCanPlay={handleVideoReady}
+          onError={handleVideoError}
         >
-          <source src={seaTurtleVideo} type="video/mp4" />
+          <source src={seaTurtleVideo} type="video/webm" />
         </video>
       )}
 
