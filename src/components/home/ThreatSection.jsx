@@ -43,7 +43,7 @@ function ThreatCard({ title, description, image, index }) {
 
 function ThreatSection() {
   return (
-    <section id="ancaman-penyu" className="relative isolate flex min-h-screen items-center overflow-visible py-20 sm:py-24 lg:py-28">
+    <section id="ancaman-penyu" className="section-overlap relative isolate flex min-h-screen items-center overflow-visible pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
       <img
         src={threatBg}
         alt=""

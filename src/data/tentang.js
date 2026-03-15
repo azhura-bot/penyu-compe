@@ -53,6 +53,6 @@ export const documentationImages = [
     alt: 'Penyu dan relawan dalam kegiatan konservasi',
     focusX: '25%',
     focusY: '70%',
-    zoom:2,
+    zoom: 2,
   },
 ]

@@ -55,7 +55,7 @@ function ContactPageSection() {
   }
 
   return (
-    <section className="relative isolate flex min-h-screen items-center overflow-visible py-24 sm:py-28 lg:py-32">
+    <section className="section-overlap relative isolate flex min-h-screen items-center overflow-visible pb-24 pt-48 sm:pb-28 sm:pt-52 lg:pb-32 lg:pt-56">
       <img
         src={ctaBg}
         alt=""

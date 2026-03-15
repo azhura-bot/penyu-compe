@@ -38,6 +38,14 @@ a {
   min-height: 100vh;
 }
 
+.section-overlap {
+  margin-top: -0.75rem;
+}
+
+.footer-overlap {
+  margin-top: 0;
+}
+
 .font-display {
   font-family: "Nokora", sans-serif;
 }
@@ -87,11 +95,27 @@ a {
   .nav-link {
     font-size: 0.88rem;
   }
+
+  .section-overlap {
+    margin-top: -1.25rem;
+  }
+
+  .footer-overlap {
+    margin-top: -0.5rem;
+  }
 }
 
 @media (min-width: 1024px) {
   .nav-link {
     font-size: 1rem;
+  }
+
+  .section-overlap {
+    margin-top: -2rem;
+  }
+
+  .footer-overlap {
+    margin-top: -1rem;
   }
 }
 
@@ -201,6 +225,7 @@ a {
   inset: 0;
   overflow: hidden;
   pointer-events: none;
+  mix-blend-mode: screen;
 }
 
 .bubble-particle {
@@ -212,13 +237,15 @@ a {
   border-radius: 999px;
   opacity: var(--bubble-opacity, 0.2);
   background:
-    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.98) 0%, rgba(225, 247, 255, 0.82) 18%, rgba(145, 220, 255, 0.28) 54%, rgba(126, 212, 255, 0) 76%);
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 1) 0%, rgba(238, 251, 255, 0.95) 20%, rgba(176, 232, 255, 0.46) 56%, rgba(126, 212, 255, 0) 78%);
   box-shadow:
-    inset -1px -1px 5px rgba(126, 212, 255, 0.22),
-    inset 1px 1px 6px rgba(255, 255, 255, 0.62),
-    0 0 16px rgba(164, 227, 255, 0.2);
+    inset -1px -1px 6px rgba(126, 212, 255, 0.3),
+    inset 1px 1px 8px rgba(255, 255, 255, 0.8),
+    0 0 18px rgba(164, 227, 255, 0.28),
+    0 0 30px rgba(201, 241, 255, 0.14);
   animation: bubble-rise var(--bubble-duration, 15s) linear var(--bubble-delay, 0s) infinite;
   will-change: transform, opacity;
+  filter: saturate(1.12);
 }
 
 .bubble-particle::after {
@@ -226,8 +253,8 @@ a {
   position: absolute;
   inset: 18%;
   border-radius: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  opacity: 0.65;
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  opacity: 0.82;
 }
 
 @keyframes home-loader-spin {
@@ -277,6 +304,77 @@ a {
   }
 }
 
+.turtle-float-right,
+.turtle-float-left {
+  will-change: transform;
+  animation-duration: 6.8s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.turtle-float-right {
+  animation-name: turtle-float-right;
+}
+
+.turtle-float-left {
+  animation-name: turtle-float-left;
+}
+
+.turtle-composite-float {
+  will-change: transform;
+  animation: turtle-composite-float 5.8s ease-in-out infinite;
+}
+
+@keyframes turtle-float-right {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-1.2deg);
+  }
+
+  35% {
+    transform: translate3d(8px, -10px, 0) rotate(0.8deg);
+  }
+
+  70% {
+    transform: translate3d(-4px, -4px, 0) rotate(-0.4deg);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-1.2deg);
+  }
+}
+
+@keyframes turtle-float-left {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(1.2deg);
+  }
+
+  35% {
+    transform: translate3d(-8px, -10px, 0) rotate(-0.8deg);
+  }
+
+  70% {
+    transform: translate3d(4px, -4px, 0) rotate(0.4deg);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) rotate(1.2deg);
+  }
+}
+
+@keyframes turtle-composite-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal.is-visible {
@@ -289,5 +387,11 @@ a {
   .bubble-particle {
     animation: none;
     opacity: 0.12;
+  }
+
+  .turtle-float-right,
+  .turtle-float-left,
+  .turtle-composite-float {
+    animation: none;
   }
 }

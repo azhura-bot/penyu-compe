@@ -36,7 +36,7 @@ function ProgramCard({ title, position, index }) {
 
 function ProgramSection() {
   return (
-    <section id="program" className="relative isolate flex min-h-screen items-center overflow-visible py-20 sm:py-24 lg:py-28">
+    <section id="program" className="section-overlap relative isolate flex min-h-screen items-center overflow-visible pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
       <img
         src={programBg}
         alt=""

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 
 import Home from '../pages/Home'
 import Kontak from '../pages/Kontak'
+import Penyu from '../pages/Penyu'
 import Tentang from '../pages/Tentang'
 
 function ScrollManager() {
@@ -37,6 +38,7 @@ function AppRouter() {
       <ScrollManager />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/penyu" element={<Penyu />} />
         <Route path="/kontak" element={<Kontak />} />
         <Route path="/tentang" element={<Tentang />} />
       </Routes>
