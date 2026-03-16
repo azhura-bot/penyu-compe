@@ -433,29 +433,35 @@ function PenyuSection() {
 
   return (
     <>
-      <section id="penyu-section" className="relative isolate overflow-hidden py-24 sm:py-28 lg:py-32">
+      <section id="penyu-section" className="relative isolate flex min-h-[44rem] items-end overflow-visible pt-28 sm:pt-32 lg:pt-36">
         <img
           src={heroBg}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,18,88,0.72)_0%,rgba(5,23,96,0.64)_24%,rgba(3,16,74,0.86)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(125,217,255,0.14),rgba(125,217,255,0)_28%)]" />
-        <BubbleLayer className="z-10 opacity-100" density="dense" />
-        <SeamMist position="bottom" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,13,109,0.7)_0%,rgba(0,13,109,0.64)_42%,rgba(3,17,79,0.78)_100%)]" />
+        <BubbleLayer className="z-10 opacity-90" density="dense" />
         <Rectangle17Blend position="bottom" />
 
-        <div className="relative z-20 mx-auto w-full max-w-[92rem] px-6 sm:px-8 lg:px-12 xl:px-16">
-          <Reveal variant="left" className="max-w-3xl">
-            <h2 className="mt-4 font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">
+        <div className="relative z-20 mx-auto w-full max-w-[92rem] px-6 pb-20 sm:px-8 lg:px-12 xl:px-16">
+          <div className="max-w-5xl">
+            <Reveal
+              as="h1"
+              variant="zoom"
+              className="font-display text-4xl leading-tight text-shadow-[0_4px_18px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl"
+            >
               Mengenal <span className="text-[#ffd900]">lebih Dekat</span> Penyu Laut
-            </h2>
-            <p className="mt-5 text-sm leading-7 text-white/86 sm:text-base lg:text-lg">
+            </Reveal>
+            <Reveal
+              as="p"
+              delay={140}
+              className="mt-5 max-w-5xl text-sm leading-7 text-white/92 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)] sm:text-base lg:text-[1.3rem] lg:leading-9"
+            >
               Perhatikan bagian tubuh penyu melalui ilustrasi interaktif ini. Arahkan kursor ke kepala, tangan,
               kaki, atau tempurung untuk mengenali fungsi setiap bagian, lalu klik untuk membuka penjelasan detail.
-            </p>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </section>
 

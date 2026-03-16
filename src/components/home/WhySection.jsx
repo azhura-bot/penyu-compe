@@ -174,7 +174,7 @@ function WhySection() {
       <Rectangle17Blend position="bottom" />
 
       <div className="relative z-20 mx-auto grid w-full max-w-[92rem] gap-10 px-6 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-18 lg:px-12 xl:px-16">
-        <div className="max-w-2xl">
+        <div className="order-1 max-w-2xl">
           <Reveal
             as="h2"
             variant="left"
@@ -186,7 +186,7 @@ function WhySection() {
           <Reveal
             delay={140}
             variant="up"
-            className="mt-8 max-w-xl rounded-[1.7rem] border border-white/65 bg-white/16 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.35)] backdrop-blur-md sm:p-8"
+            className="mt-8 hidden max-w-xl rounded-[1.7rem] border border-white/65 bg-white/16 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.35)] backdrop-blur-md lg:block sm:p-8"
           >
             <p className="text-sm leading-7 text-white/92 sm:text-base lg:text-lg">
               Penyu bukan sekadar hewan laut biasa. Mereka punya peran penting menjaga keseimbangan laut, dari
@@ -197,12 +197,27 @@ function WhySection() {
           </Reveal>
         </div>
 
-        <Reveal variant="right" delay={200} className="relative">
+        <Reveal variant="right" delay={200} className="order-2 relative lg:order-3">
           <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ffd900]/15 blur-3xl sm:h-60 sm:w-60" />
           <div className="relative mx-auto w-full max-w-[22rem] sm:max-w-[24rem] lg:max-w-[27rem]">
             {shouldLoadVideo ? <TurtleLoopVideo /> : <div aria-hidden="true" className="aspect-square w-full" />}
           </div>
         </Reveal>
+
+        <div className="order-3 lg:order-2 lg:hidden">
+          <Reveal
+            delay={140}
+            variant="up"
+            className="max-w-xl rounded-[1.7rem] border border-white/65 bg-white/16 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.35)] backdrop-blur-md sm:p-8"
+          >
+            <p className="text-sm leading-7 text-white/92 sm:text-base lg:text-lg">
+              Penyu bukan sekadar hewan laut biasa. Mereka punya peran penting menjaga keseimbangan laut, dari
+              terumbu karang sampai padang lamun. Kalau penyu hilang, kehidupan di laut juga bisa ikut terganggu.
+              Indonesia termasuk rumah penting bagi penyu dunia. Banyak pantai di negeri ini jadi tempat mereka
+              kembali setiap tahun untuk bertelur.
+            </p>
+          </Reveal>
+        </div>
       </div>
     </section>
   )
