@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export default function MusicPlayer() {
+export default function MusicPlayer({ shouldAutoplay = true }) {
   const audioRef = useRef(null)
   const hasStartedRef = useRef(false)
 
@@ -15,7 +15,7 @@ export default function MusicPlayer() {
 
     const startPlayback = () => {
       if (hasStartedRef.current) {
-        return
+        return Promise.resolve()
       }
 
       hasStartedRef.current = true
@@ -23,26 +23,41 @@ export default function MusicPlayer() {
       const playPromise = audio.play()
 
       if (playPromise !== undefined) {
-        playPromise.catch(() => {
+        return playPromise.catch(() => {
           hasStartedRef.current = false
         })
       }
+
+      return Promise.resolve()
     }
 
-    window.addEventListener('pointerdown', startPlayback, { once: true, passive: true })
-    window.addEventListener('keydown', startPlayback, { once: true })
+    const handleUserPlayback = () => {
+      startPlayback().finally(() => {
+        if (hasStartedRef.current) {
+          window.removeEventListener('pointerdown', handleUserPlayback)
+          window.removeEventListener('keydown', handleUserPlayback)
+        }
+      })
+    }
+
+    if (shouldAutoplay) {
+      startPlayback()
+    }
+
+    window.addEventListener('pointerdown', handleUserPlayback, { passive: true })
+    window.addEventListener('keydown', handleUserPlayback)
 
     return () => {
-      window.removeEventListener('pointerdown', startPlayback)
-      window.removeEventListener('keydown', startPlayback)
+      window.removeEventListener('pointerdown', handleUserPlayback)
+      window.removeEventListener('keydown', handleUserPlayback)
     }
-  }, [])
+  }, [shouldAutoplay])
 
   return (
     <audio
       ref={audioRef}
       src="/music/music.mp3"
-      preload="none"
+      preload="auto"
       loop
     />
   )

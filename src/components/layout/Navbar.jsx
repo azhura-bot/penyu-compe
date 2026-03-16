@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import homeLogo from '../../assets/logo.png'
@@ -5,8 +6,17 @@ import searchIcon from '../../assets/homepage/search.svg'
 import { navItems } from '../../data/navigation'
 import { warmTentangPage } from '../../utils/routePreload'
 
-function NavLink({ href, label, type, active = false }) {
-  const className = `nav-link font-nav ${active ? 'is-active' : ''}`
+function NavLink({ href, label, type, active = false, mobile = false, onNavigate }) {
+  const className = [
+    'nav-link font-nav',
+    active ? 'is-active' : '',
+    mobile
+      ? `nav-link-mobile flex min-h-[3.25rem] w-full items-center justify-start rounded-[1.15rem] border px-4  text-[0.95rem] leading-none shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]
+        ${active
+          ? 'border-[#ffe45c]/55 bg-[linear-gradient(135deg,rgba(255,217,0,0.18),rgba(255,255,255,0.08))] text-[#ffd900]'
+          : 'border-white/12 bg-white/[0.045] text-white hover:border-white/22 hover:bg-white/[0.09]'}`
+      : '',
+  ].join(' ')
   const shouldPrefetchTentang = href === '/tentang'
 
   const handlePrefetch = () => {
@@ -22,6 +32,7 @@ function NavLink({ href, label, type, active = false }) {
       <Link
         to={href}
         className={className}
+        onClick={onNavigate}
         onMouseEnter={handlePrefetch}
         onFocus={handlePrefetch}
         onPointerDown={handlePrefetch}
@@ -35,6 +46,7 @@ function NavLink({ href, label, type, active = false }) {
     <a
       href={href}
       className={className}
+      onClick={onNavigate}
     >
       {label}
     </a>
@@ -42,6 +54,7 @@ function NavLink({ href, label, type, active = false }) {
 }
 
 function Navbar({ activeLabel = 'Beranda' }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const activeHref = navItems.find((item) => item.label === activeLabel)?.href
 
   return (
@@ -55,11 +68,12 @@ function Navbar({ activeLabel = 'Beranda' }) {
           <div className="pointer-events-none absolute -right-12 top-0 h-20 w-28 rounded-full bg-[#8fd3ff]/22 blur-2xl" />
           <div className="pointer-events-none absolute -bottom-8 left-1/3 h-16 w-40 rounded-full bg-[#dff5ff]/10 blur-2xl" />
 
-          <div className="relative flex flex-wrap items-center justify-between gap-3">
+          <div className="relative flex items-center justify-between gap-3">
             <Link
               to="/"
               className="inline-flex h-12 items-center rounded-xl px-2 py-1 transition hover:bg-white/8"
               aria-label="Penyu EDU"
+              onClick={() => setIsMenuOpen(false)}
             >
               <img
                 src={homeLogo}
@@ -68,7 +82,7 @@ function Navbar({ activeLabel = 'Beranda' }) {
               />
             </Link>
 
-            <div className="flex flex-1 flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-x-5 lg:gap-x-8">
+            <div className="hidden flex-1 items-center justify-center gap-x-4 gap-y-2 md:flex md:flex-wrap sm:gap-x-5 lg:gap-x-8">
               {navItems.map((item) => (
                 <NavLink key={item.label} {...item} active={activeHref === item.href} />
               ))}
@@ -77,11 +91,68 @@ function Navbar({ activeLabel = 'Beranda' }) {
             <button
               type="button"
               aria-label="Cari"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/50 bg-white/10 transition hover:bg-white/20"
+              className="hidden h-9 w-9 items-center justify-center rounded-full border border-white/50 bg-white/10 transition hover:bg-white/20 md:inline-flex"
             >
               <img src={searchIcon} alt="" aria-hidden="true" className="h-3.5 w-3.5" />
             </button>
+
+            <button
+              type="button"
+              aria-label={isMenuOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
+              aria-controls="mobile-navigation"
+              aria-expanded={isMenuOpen}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/50 bg-white/10 transition hover:bg-white/20 md:hidden"
+              onClick={() => setIsMenuOpen((open) => !open)}
+            >
+              <span className="relative h-4.5 w-5">
+                <span
+                  className={`absolute left-0 top-0 h-0.5 w-5 rounded-full bg-white transition-transform duration-300 ${
+                    isMenuOpen ? 'translate-y-[7px] rotate-45' : ''
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 top-[7px] h-0.5 w-5 rounded-full bg-white transition-all duration-300 ${
+                    isMenuOpen ? 'opacity-0' : ''
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 top-[14px] h-0.5 w-5 rounded-full bg-white transition-transform duration-300 ${
+                    isMenuOpen ? '-translate-y-[7px] -rotate-45' : ''
+                  }`}
+                />
+              </span>
+            </button>
           </div>
+
+          {isMenuOpen ? (
+            <div
+              id="mobile-navigation"
+              className="relative mt-3 border-t border-white/12 pt-3 md:hidden"
+            >
+              <div className="pointer-events-none absolute left-6 right-6 top-0 h-px bg-white/20" />
+
+              <div className="flex flex-col gap-2">
+                {navItems.map((item) => (
+                  <NavLink
+                    key={item.label}
+                    {...item}
+                    active={activeHref === item.href}
+                    mobile
+                    onNavigate={() => setIsMenuOpen(false)}
+                  />
+                ))}
+
+                <button
+                  type="button"
+                  aria-label="Cari"
+                  className="mt-1 inline-flex min-h-[3.25rem] w-full items-center justify-center gap-2 rounded-[1.15rem] border border-white/18 bg-white/[0.06] px-4 py-3 font-nav text-[0.95rem] font-semibold leading-none text-white transition hover:border-white/28 hover:bg-white/[0.12]"
+                >
+                  <img src={searchIcon} alt="" aria-hidden="true" className="h-3.5 w-3.5" />
+                  Cari
+                </button>
+              </div>
+            </div>
+          ) : null}
         </nav>
       </div>
     </div>

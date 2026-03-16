@@ -91,6 +91,14 @@ a {
   transform: scaleX(1);
 }
 
+.nav-link-mobile {
+  padding-bottom: 0;
+}
+
+.nav-link-mobile::after {
+  display: none;
+}
+
 @media (min-width: 640px) {
   .nav-link {
     font-size: 0.88rem;

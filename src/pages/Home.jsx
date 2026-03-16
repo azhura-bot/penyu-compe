@@ -113,7 +113,7 @@ function Home() {
         </Suspense>
       </DeferredSection>
       <Footer />
-      <MusicPlayer /> 
+      <MusicPlayer shouldAutoplay={isHeroExperienceReady} />
     </main>
   )
 }
