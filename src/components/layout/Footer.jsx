@@ -48,10 +48,10 @@ function Footer() {
           <div className="max-w-xl">
             <Link to="/" className="inline-flex items-center gap-4">
               <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/16 bg-white/8 shadow-[0_12px_30px_rgba(0,0,0,0.22)] backdrop-blur-md">
-                <img src={homeLogo} alt="Logo Penyu EDU" className="h-10 w-10 object-contain" />
+                <img src={homeLogo} alt="Logo Komunitas Penyu Nusantara" className="h-10 w-10 object-contain" />
               </span>
               <span>
-                <span className="block font-display text-xl text-white sm:text-2xl">Penyu EDU</span>
+                <span className="block font-display text-xl text-white sm:text-2xl">Komunitas Penyu Nusantara</span>
                 <span className="mt-1 block font-nav text-[0.72rem] font-semibold uppercase tracking-[0.32em] text-[#8fdcff]/78 sm:text-xs">
                   Edukasi dan Konservasi Laut
                 </span>
@@ -106,7 +106,7 @@ function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/56 sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {year} Penyu EDU. Dibangun untuk edukasi dan kepedulian laut.</p>
+          <p>&copy; {year} Komunitas Penyu Nusantara. Dibangun untuk edukasi dan kepedulian laut.</p>
           <p>Pelestarian dimulai dari pengetahuan, lalu berubah menjadi tindakan.</p>
         </div>
       </div>

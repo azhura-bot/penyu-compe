@@ -15,7 +15,7 @@ function HomeLoadingScreen() {
           <div className="relative z-10 flex h-[7.4rem] w-[7.4rem] items-center justify-center rounded-full border border-white/10 bg-[radial-gradient(circle_at_top,rgba(15,60,102,0.96),rgba(4,22,43,0.98))] shadow-[0_0_34px_rgba(78,191,255,0.18)] sm:h-[8.4rem] sm:w-[8.4rem]">
             <img
               src={homeLogo}
-              alt="Logo Penyu EDU"
+              alt="Logo Komunitas Penyu Nusantara"
               className="h-[5.2rem] w-[5.2rem] object-contain drop-shadow-[0_0_18px_rgba(122,220,255,0.26)] sm:h-[5.9rem] sm:w-[5.9rem]"
             />
           </div>

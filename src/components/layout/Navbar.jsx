@@ -72,12 +72,12 @@ function Navbar({ activeLabel = 'Beranda' }) {
             <Link
               to="/"
               className="inline-flex h-10 items-center rounded-lg px-1.5 py-1 transition hover:bg-white/8 sm:h-12 sm:rounded-xl sm:px-2"
-              aria-label="Penyu EDU"
+              aria-label="Komunitas Penyu Nusantara"
               onClick={() => setIsMenuOpen(false)}
             >
               <img
                 src={homeLogo}
-                alt="Logo Penyu EDU"
+                alt="Logo Komunitas Penyu Nusantara"
                 className="h-full w-auto object-contain drop-shadow-[0_2px_10px_rgba(255,255,255,0.18)]"
               />
             </Link>
