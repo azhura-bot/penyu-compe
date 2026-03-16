@@ -1,4 +1,4 @@
-import homeLogo from '../../assets/image.png'
+import homeLogo from '../../assets/logo.png'
 
 function HomeLoadingScreen() {
   return (

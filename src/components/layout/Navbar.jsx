@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 
+import homeLogo from '../../assets/logo.png'
 import searchIcon from '../../assets/homepage/search.svg'
 import { navItems } from '../../data/navigation'
 import { warmTentangPage } from '../../utils/routePreload'
@@ -57,9 +58,14 @@ function Navbar({ activeLabel = 'Beranda' }) {
           <div className="relative flex flex-wrap items-center justify-between gap-3">
             <Link
               to="/"
-              className="font-nav text-lg font-bold tracking-wide text-white drop-shadow-[0_2px_10px_rgba(255,255,255,0.18)] sm:text-xl lg:text-[1.55rem]"
+              className="inline-flex h-12 items-center rounded-xl px-2 py-1 transition hover:bg-white/8"
+              aria-label="Penyu EDU"
             >
-              Logo
+              <img
+                src={homeLogo}
+                alt="Logo Penyu EDU"
+                className="h-full w-auto object-contain drop-shadow-[0_2px_10px_rgba(255,255,255,0.18)]"
+              />
             </Link>
 
             <div className="flex flex-1 flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-x-5 lg:gap-x-8">

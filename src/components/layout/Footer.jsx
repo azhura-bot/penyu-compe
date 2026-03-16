@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import homeLogo from '../../assets/image.png'
+import homeLogo from '../../assets/logo.png'
 import BubbleLayer from './BubbleLayer'
 import Rectangle17Blend from './Rectangle17Blend'
 
