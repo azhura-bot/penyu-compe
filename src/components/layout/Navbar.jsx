@@ -80,7 +80,7 @@ function Navbar({ activeLabel = 'Beranda' }) {
                 alt="Logo Komunitas Penyu Nusantara"
                 className="h-full w-auto object-contain drop-shadow-[0_2px_10px_rgba(255,255,255,0.18)]"
               />
-              <span className="max-w-[10rem] font-display text-[0.72rem] font-semibold uppercase leading-tight tracking-[0.16em] [text-shadow:0_1px_0_rgba(255,255,255,0.28),0_3px_10px_rgba(1,17,44,0.9),0_0_18px_rgba(143,211,255,0.18)] sm:max-w-none sm:text-[0.8rem]">
+              <span className="max-w-[10rem] font-display text-[0.72rem] font-semibold uppercase leading-tight tracking-[0.16em] [text-shadow:0_1px_0_rgba(255,255,255,0.2),0_2px_6px_rgba(1,17,44,0.35)] sm:max-w-none sm:text-[0.8rem]">
                 Komunitas Penyu Nusantara
               </span>
             </Link>
