@@ -71,7 +71,7 @@ function Navbar({ activeLabel = 'Beranda' }) {
           <div className="relative flex items-center justify-between gap-2 sm:gap-3">
             <Link
               to="/"
-              className="inline-flex h-10 items-center rounded-lg px-1.5 py-1 transition hover:bg-white/8 sm:h-12 sm:rounded-xl sm:px-2"
+              className="inline-flex h-10 items-center gap-2 rounded-lg px-1.5 py-1 transition hover:bg-white/8 sm:h-12 sm:gap-3 sm:rounded-xl sm:px-2"
               aria-label="Komunitas Penyu Nusantara"
               onClick={() => setIsMenuOpen(false)}
             >
@@ -80,6 +80,9 @@ function Navbar({ activeLabel = 'Beranda' }) {
                 alt="Logo Komunitas Penyu Nusantara"
                 className="h-full w-auto object-contain drop-shadow-[0_2px_10px_rgba(255,255,255,0.18)]"
               />
+              <span className="max-w-[10rem] font-display text-[0.72rem] font-semibold uppercase leading-tight tracking-[0.16em] sm:max-w-none sm:text-[0.8rem]">
+                Komunitas Penyu Nusantara
+              </span>
             </Link>
 
             <div className="hidden flex-1 items-center justify-center gap-x-4 gap-y-2 md:flex md:flex-wrap sm:gap-x-5 lg:gap-x-8">
@@ -87,14 +90,6 @@ function Navbar({ activeLabel = 'Beranda' }) {
                 <NavLink key={item.label} {...item} active={activeHref === item.href} />
               ))}
             </div>
-
-            <button
-              type="button"
-              aria-label="Cari"
-              className="hidden h-9 w-9 items-center justify-center rounded-full border border-white/50 bg-white/10 transition hover:bg-white/20 md:inline-flex"
-            >
-              <img src={searchIcon} alt="" aria-hidden="true" className="h-3.5 w-3.5" />
-            </button>
 
             <button
               type="button"
@@ -141,15 +136,6 @@ function Navbar({ activeLabel = 'Beranda' }) {
                     onNavigate={() => setIsMenuOpen(false)}
                   />
                 ))}
-
-                <button
-                  type="button"
-                  aria-label="Cari"
-                  className="mt-1 inline-flex min-h-[2.8rem] w-full items-center justify-center gap-2 rounded-[1rem] border border-white/18 bg-white/[0.06] px-3.5 py-2.5 font-nav text-[0.88rem] font-semibold leading-none text-white transition hover:border-white/28 hover:bg-white/[0.12] sm:min-h-[3.25rem] sm:rounded-[1.15rem] sm:px-4 sm:py-3 sm:text-[0.95rem]"
-                >
-                  <img src={searchIcon} alt="" aria-hidden="true" className="h-3.5 w-3.5" />
-                  Cari
-                </button>
               </div>
             </div>
           ) : null}
