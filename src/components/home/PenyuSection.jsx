@@ -4,7 +4,8 @@ import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
 import Reveal from '../motion/Reveal'
 import { turtleBodyParts, turtleSpecies } from '../../data/penyu'
-import bgSvg from '../../assets/bg.svg'
+import anatomyBg from '../../assets/images/BG-9.png'
+import speciesBg from '../../assets/images/BG-6.png'
 import heroBg from '../../assets/tentang/hero-bg.png'
 import penyuBodyDiagram from '../../assets/penyu.png'
 const TURTLE_SPRITE_SIZE = { width: 1536, height: 1024 }
@@ -466,7 +467,7 @@ function PenyuSection() {
       </section>
 
       <section className="section-overlap relative isolate overflow-hidden pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
-        <AdaptiveBackground src={bgSvg} objectPosition="center bottom" />
+        <AdaptiveBackground src={anatomyBg} objectPosition="center 56%" />
         <div className="absolute inset-x-0 -top-24 bottom-0 h-[calc(100%+6rem)] bg-[linear-gradient(180deg,rgba(4,18,88,0.82)_0%,rgba(5,21,88,0.68)_26%,rgba(3,15,62,0.9)_100%)]" />
         <div className="absolute inset-x-0 -top-24 bottom-0 h-[calc(100%+6rem)] bg-[radial-gradient(circle_at_center,rgba(125,217,255,0.14),rgba(125,217,255,0)_42%)]" />
         <BubbleLayer className="z-10 opacity-100" density="dense" />
@@ -516,7 +517,7 @@ function PenyuSection() {
       </section>
 
       <section className="section-overlap relative isolate overflow-hidden pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
-        <AdaptiveBackground src={bgSvg} objectPosition="center top" />
+        <AdaptiveBackground src={speciesBg} objectPosition="center 50%" />
         <div className="absolute inset-x-0 -top-24 bottom-0 h-[calc(100%+6rem)] bg-[linear-gradient(180deg,rgba(4,18,88,0.76)_0%,rgba(5,23,96,0.68)_22%,rgba(3,16,74,0.88)_56%,rgba(2,10,40,0.96)_100%)]" />
         <div className="absolute inset-x-0 -top-24 bottom-0 h-[calc(100%+6rem)] bg-[radial-gradient(circle_at_top,rgba(125,217,255,0.14),rgba(125,217,255,0)_28%),radial-gradient(circle_at_bottom,rgba(125,217,255,0.08),rgba(125,217,255,0)_36%)]" />
         <BubbleLayer className="z-10 opacity-100" density="dense" />

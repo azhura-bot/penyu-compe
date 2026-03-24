@@ -1,4 +1,4 @@
-import visionBg from '../../assets/tentang/vision-bg.png'
+import visionBg from '../../assets/images/BG-5.png'
 import { missionItems } from '../../data/tentang'
 import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
@@ -21,7 +21,8 @@ function VisionMissionSection() {
         src={visionBg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ objectPosition: 'center 56%' }}
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,13,109,0.54)_0%,rgba(0,13,109,0.48)_36%,rgba(3,17,79,0.72)_100%)]" />
       <BubbleLayer className="z-10 opacity-85" density="dense" />

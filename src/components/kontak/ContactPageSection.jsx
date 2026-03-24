@@ -1,4 +1,4 @@
-import ctaBg from '../../assets/homepage/cta-bg.jpg'
+import ctaBg from '../../assets/images/BG.png'
 import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
 import Reveal from '../motion/Reveal'
@@ -60,7 +60,8 @@ function ContactPageSection() {
         src={ctaBg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ objectPosition: 'center 52%' }}
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,13,109,0.42)_0%,rgba(0,13,109,0.56)_26%,rgba(3,17,79,0.88)_100%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(115,184,255,0.1),rgba(115,184,255,0)_42%)]" />
@@ -135,7 +136,7 @@ function ContactPageSection() {
 
                   <button
                     type="submit"
-                    className="inline-flex min-w-[8.75rem] items-center justify-center rounded-[1rem] border border-[#9cd3ff]/42 bg-[linear-gradient(180deg,#103eff_0%,#0d2fcc_100%)] px-8 py-3.5 text-sm font-bold text-white shadow-[0_16px_34px_rgba(0,0,0,0.3)] transition hover:brightness-110 sm:text-base"
+                    className="inline-flex min-w-[8.75rem] items-center justify-center rounded-full border-2 border-[#ffd900] bg-transparent px-8 py-3.5 text-sm font-bold text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.45)] transition hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f] sm:text-base"
                   >
                     Kirim
                   </button>

@@ -1,6 +1,6 @@
-import docsBg from '../assets/tentang/docs-bg.png'
 import heroBg from '../assets/tentang/hero-bg.png'
-import visionBg from '../assets/tentang/vision-bg.png'
+import docsBg from '../assets/images/BG-8.png'
+import visionBg from '../assets/images/BG-5.png'
 import { documentationImages } from '../data/tentang'
 
 const tentangPriorityAssets = [

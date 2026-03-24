@@ -1,4 +1,4 @@
-import docsBg from '../../assets/tentang/docs-bg.png'
+import docsBg from '../../assets/images/BG-8.png'
 import { documentationImages } from '../../data/tentang'
 import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
@@ -13,23 +13,30 @@ function DocumentationCard({ image, index }) {
       as="article"
       variant={index % 2 === 0 ? 'tilt-left' : 'tilt-right'}
       delay={index * 95}
-      distance="28px"
-      className="group relative w-full max-w-[17rem] overflow-hidden rounded-[1rem] border-2 border-white/75 shadow-[0_16px_32px_rgba(0,0,0,0.32)] transition duration-400 hover:-translate-y-1.5 hover:shadow-[0_24px_40px_rgba(0,0,0,0.42)] sm:max-w-[18rem] lg:max-w-[19rem]"
+      distance="30px"
+      className="group relative w-full max-w-[17rem] overflow-hidden rounded-[1rem] border-2 border-white/75 shadow-[0_16px_32px_rgba(0,0,0,0.32)] transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-[0_24px_44px_rgba(0,0,0,0.42)] sm:max-w-[18rem] lg:max-w-[19rem]"
     >
       <div className="relative aspect-square overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.02)_34%,rgba(255,255,255,0)_62%)] opacity-0 transition duration-500 group-hover:opacity-100" />
-        <div className="pointer-events-none absolute inset-y-0 left-[-42%] z-10 w-[38%] rotate-[14deg] bg-[linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,0.24),rgba(255,255,255,0))] opacity-0 blur-md transition duration-700 group-hover:left-[108%] group-hover:opacity-100" />
-        <img
-          src={image.src}
-          alt={image.alt ?? `Dokumentasi ${index + 1}`}
-          className="absolute inset-0 h-full w-full object-cover transition duration-500 ease-out group-hover:brightness-[1.06] group-hover:saturate-[1.05]"
+        <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.02)_34%,rgba(255,255,255,0)_62%)] opacity-0 transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-100" />
+        <div className="pointer-events-none absolute inset-y-0 left-[-42%] z-10 w-[38%] rotate-[14deg] bg-[linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,0.24),rgba(255,255,255,0))] opacity-0 blur-md transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:left-[108%] group-hover:opacity-100" />
+        <div
+          className="absolute inset-0"
           style={{
-            objectPosition: `${focusX} ${focusY}`,
-            transformOrigin: `${focusX} ${focusY}`,
             transform: `scale(${image.zoom ?? 1.12})`,
+            transformOrigin: `${focusX} ${focusY}`,
           }}
-        />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-[linear-gradient(180deg,rgba(3,17,79,0)_0%,rgba(3,17,79,0.08)_46%,rgba(3,17,79,0.22)_100%)] opacity-70 transition duration-500 group-hover:opacity-100" />
+        >
+          <img
+            src={image.src}
+            alt={image.alt ?? `Dokumentasi ${index + 1}`}
+            className="absolute inset-0 h-full w-full object-cover transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:-translate-y-1 group-hover:scale-[1.04] group-hover:brightness-[1.08] group-hover:saturate-[1.06]"
+            style={{
+              objectPosition: `${focusX} ${focusY}`,
+              transformOrigin: `${focusX} ${focusY}`,
+            }}
+          />
+        </div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-[linear-gradient(180deg,rgba(3,17,79,0)_0%,rgba(3,17,79,0.08)_46%,rgba(3,17,79,0.22)_100%)] opacity-70 transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-100" />
       </div>
     </Reveal>
   )
@@ -42,7 +49,8 @@ function DocumentationSection() {
         src={docsBg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ objectPosition: 'center 54%' }}
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,13,109,0.72)_0%,rgba(0,13,109,0.56)_28%,rgba(3,17,79,0.84)_100%)]" />
       <BubbleLayer className="z-10 opacity-85" density="dense" />

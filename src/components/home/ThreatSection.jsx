@@ -1,4 +1,4 @@
-import threatBg from '../../assets/homepage/threat-bg.jpg'
+import threatBg from '../../assets/images/BG-4.png'
 import BubbleLayer from '../layout/BubbleLayer'
 import { threatCards } from '../../data/home'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
@@ -52,7 +52,8 @@ function ThreatSection() {
         aria-hidden="true"
         loading="lazy"
         decoding="async"
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ objectPosition: 'center 46%' }}
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,17,79,0.62)_0%,rgba(3,17,79,0.4)_26%,rgba(2,10,38,0.72)_100%)]" />
       <BubbleLayer className="z-10 opacity-85" density="dense" />
