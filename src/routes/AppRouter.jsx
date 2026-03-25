@@ -1,5 +1,7 @@
-import { Suspense, lazy, useEffect } from 'react'
+import { Suspense, lazy, useEffect, useRef } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
+
+import TargetCursor from '../components/motion/TargetCursor'
 
 const Home = lazy(() => import('../pages/Home'))
 const Penyu = lazy(() => import('../pages/Penyu'))
@@ -37,17 +39,22 @@ function ScrollManager() {
 }
 
 function AppRouter() {
+  const appRef = useRef(null)
+
   return (
     <BrowserRouter>
-      <ScrollManager />
-      <Suspense fallback={<RouteFallback />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/penyu" element={<Penyu />} />
-          <Route path="/kontak" element={<Kontak />} />
-          <Route path="/tentang" element={<Tentang />} />
-        </Routes>
-      </Suspense>
+      <div ref={appRef} className="min-h-screen">
+        <ScrollManager />
+        <TargetCursor containerRef={appRef} />
+        <Suspense fallback={<RouteFallback />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/penyu" element={<Penyu />} />
+            <Route path="/kontak" element={<Kontak />} />
+            <Route path="/tentang" element={<Tentang />} />
+          </Routes>
+        </Suspense>
+      </div>
     </BrowserRouter>
   )
 }

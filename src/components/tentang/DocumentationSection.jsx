@@ -51,7 +51,7 @@ function DocumentationSection() {
   }))
 
   return (
-    <section className="section-overlap relative isolate overflow-visible pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
+    <section className="section-overlap relative isolate overflow-visible pb-20 pt-20 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-25">
       <img
         src={docsBg}
         alt=""
@@ -68,7 +68,7 @@ function DocumentationSection() {
           <Reveal
             as="h2"
             variant="up"
-            className="font-display text-3xl text-shadow-[0_4px_14px_rgba(0,0,0,0.5)] sm:text-4xl lg:text-5xl"
+            className="type-section-title font-display text-shadow-[0_4px_14px_rgba(0,0,0,0.5)]"
           >
             <span className="text-[#ffd900]">{copy.about.documentation.titleHighlight}</span>
             <span className="text-white">{copy.about.documentation.titleAfter}</span>
@@ -76,7 +76,7 @@ function DocumentationSection() {
           <Reveal
             as="p"
             delay={120}
-            className="mx-auto mt-5 max-w-5xl text-sm leading-7 text-white/95 text-shadow-[0_4px_20px_rgba(0,0,0,0.7)] sm:text-base lg:text-lg"
+            className="type-body-lg mx-auto mt-5 max-w-5xl text-white/95 text-shadow-[0_4px_20px_rgba(0,0,0,0.7)]"
           >
             {copy.about.documentation.description}
           </Reveal>

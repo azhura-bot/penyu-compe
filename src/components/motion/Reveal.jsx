@@ -9,7 +9,7 @@ function Reveal({
   duration = 850,
   distance = '42px',
   threshold = 0.18,
-  once = false,
+  once = true,
   ...props
 }) {
   const elementRef = useRef(null)

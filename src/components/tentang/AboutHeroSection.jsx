@@ -24,7 +24,7 @@ function AboutHeroSection() {
           <Reveal
             as="h1"
             variant="zoom"
-            className="font-display text-4xl leading-tight text-shadow-[0_4px_18px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl"
+            className="type-hero-title font-display text-shadow-[0_4px_18px_rgba(0,0,0,0.55)]"
           >
             <span className="text-white">{copy.about.hero.titleBefore}</span>
             <span className="text-[#ffd900]">{copy.about.hero.titleHighlight}</span>
@@ -33,7 +33,7 @@ function AboutHeroSection() {
           <Reveal
             as="p"
             delay={140}
-            className="mt-5 max-w-5xl text-sm leading-7 text-white/92 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)] sm:text-base lg:text-[1.3rem] lg:leading-9"
+            className="type-body-lg mt-5 max-w-5xl text-white/92 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)]"
           >
             {copy.about.hero.description}
           </Reveal>

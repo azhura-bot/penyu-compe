@@ -27,7 +27,7 @@ function ProgramCard({ title, position, index }) {
       <div className="aspect-[0.68]" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(5,29,118,0.58)_0%,rgba(5,29,118,0.38)_34%,rgba(5,29,118,0.16)_62%,rgba(3,17,79,0.04)_100%)] transition-all duration-500 group-hover:bg-[linear-gradient(180deg,rgba(5,29,118,0.42)_0%,rgba(5,29,118,0.24)_34%,rgba(5,29,118,0.08)_62%,rgba(3,17,79,0.02)_100%)]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[6.25rem] bg-[linear-gradient(180deg,rgba(3,17,79,0)_0%,rgba(3,17,79,0.08)_32%,rgba(3,17,79,0.28)_72%,rgba(3,17,79,0.48)_100%)] transition-all duration-500 group-hover:h-[4.75rem] group-hover:bg-[linear-gradient(180deg,rgba(3,17,79,0)_0%,rgba(3,17,79,0.05)_30%,rgba(3,17,79,0.16)_68%,rgba(3,17,79,0.28)_100%)]" />
-      <div className="absolute inset-x-4 bottom-10 text-center text-[0.95rem] font-bold leading-[1.18] text-white text-shadow-[0_4px_10px_rgba(0,0,0,0.78)] transition duration-500 group-hover:bottom-8 sm:text-[1rem] lg:text-[1.08rem]">
+      <div className="type-card-title absolute inset-x-4 bottom-10 text-center leading-[1.18] text-white text-shadow-[0_4px_10px_rgba(0,0,0,0.78)] transition duration-500 group-hover:bottom-8">
         <p>{title[0]}</p>
         <p>{title[1]}</p>
       </div>
@@ -43,7 +43,7 @@ function ProgramSection() {
   }))
 
   return (
-    <section id="program" className="section-overlap relative isolate flex min-h-screen items-center overflow-visible pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
+    <section id="program" className="section-overlap relative isolate flex min-h-screen items-center overflow-visible pb-20 pt-20 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-25">
       <img
         src={programBg}
         alt=""
@@ -63,14 +63,14 @@ function ProgramSection() {
           <Reveal
             as="h2"
             variant="left"
-            className="font-display text-3xl leading-tight text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl"
+            className="type-section-title font-display text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)]"
           >
             <span className="text-[#ffd900]">{copy.home.program.titleHighlight}</span>{copy.home.program.titleAfter}
           </Reveal>
           <Reveal
             as="p"
             delay={120}
-            className="mt-5 w-full max-w-none text-sm leading-7 text-white/90 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)] sm:text-base lg:text-lg"
+            className="type-body-lg mt-5 w-full max-w-none text-white/90 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)]"
           >
             {copy.home.program.description}
           </Reveal>

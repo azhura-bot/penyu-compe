@@ -8,7 +8,7 @@ import Rectangle17Blend from './Rectangle17Blend'
 
 function FooterAnchor({ href, label, type }) {
   const className =
-    'inline-flex text-sm text-white/78 transition hover:text-[#ffd900] sm:text-[0.95rem]'
+    'type-caption inline-flex text-white/78 transition hover:text-[#ffd900]'
 
   if (type === 'route' || type === 'anchor') {
     return (
@@ -49,20 +49,20 @@ function Footer() {
               </span>
             </Link>
 
-            <p className="mt-6 max-w-lg text-sm leading-7 text-white/78 sm:text-base">
+            <p className="type-body mt-6 max-w-lg text-white/78">
               {copy.footer.description}
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 to="/tentang"
-                className="inline-flex items-center justify-center rounded-full border-2 border-[#ffd900] px-6 py-3 text-sm font-bold text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.32)] transition hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f] sm:text-base"
+                className="type-button inline-flex items-center justify-center rounded-full border-2 border-[#ffd900] px-6 py-3 text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.32)] transition hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f]"
               >
                 {copy.footer.primaryAction}
               </Link>
               <a
                 href="/#program"
-                className="inline-flex items-center justify-center rounded-full border border-white/28 bg-white/8 px-6 py-3 text-sm font-semibold text-white/88 transition hover:border-white/46 hover:bg-white/14 hover:text-white sm:text-base"
+                className="type-button inline-flex items-center justify-center rounded-full border border-white/28 bg-white/8 px-6 py-3 text-white/88 transition hover:border-white/46 hover:bg-white/14 hover:text-white"
               >
                 {copy.footer.secondaryAction}
               </a>
@@ -87,15 +87,15 @@ function Footer() {
             </div>
 
             <div className="mt-7 rounded-[1.2rem] border border-white/12 bg-white/6 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-sm">
-              <p className="text-sm font-semibold text-white">{copy.footer.quoteTitle}</p>
-              <p className="mt-2 text-sm leading-6 text-white/72">
+              <p className="type-label text-white">{copy.footer.quoteTitle}</p>
+              <p className="type-caption mt-2 text-white/72">
                 {copy.footer.quoteDescription}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/56 sm:flex-row sm:items-center sm:justify-between">
+        <div className="type-caption mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-white/56 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {year} {copy.footer.copyright}</p>
           <p>{copy.footer.closing}</p>
         </div>

@@ -161,7 +161,7 @@ function WhySection() {
     <section
       id="tentang-penyu"
       ref={sectionRef}
-      className="section-overlap relative isolate flex min-h-screen items-center overflow-visible bg-[#03114f] pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52"
+      className="section-overlap relative isolate flex min-h-screen items-center overflow-visible bg-[#03114f] pb-20 pt-20 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-25"
     >
       <img
         src={whyBg}
@@ -181,7 +181,7 @@ function WhySection() {
           <Reveal
             as="h2"
             variant="left"
-            className="font-display text-3xl leading-tight text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl"
+            className="type-section-title font-display text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)]"
           >
             {copy.home.why.titleBefore} <span className="text-[#ffd900]">{copy.home.why.titleHighlight}</span>
           </Reveal>
@@ -191,7 +191,7 @@ function WhySection() {
             variant="up"
             className="mt-8 hidden max-w-xl rounded-[1.7rem] border border-white/65 bg-white/16 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.35)] backdrop-blur-md lg:block sm:p-8"
           >
-            <p className="text-sm leading-7 text-white/92 sm:text-base lg:text-lg">{copy.home.why.description}</p>
+            <p className="type-body-lg text-white/92">{copy.home.why.description}</p>
           </Reveal>
         </div>
 
@@ -208,7 +208,7 @@ function WhySection() {
             variant="up"
             className="max-w-xl rounded-[1.7rem] border border-white/65 bg-white/16 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.35)] backdrop-blur-md sm:p-8"
           >
-            <p className="text-sm leading-7 text-white/92 sm:text-base lg:text-lg">{copy.home.why.description}</p>
+            <p className="type-body-lg text-white/92">{copy.home.why.description}</p>
           </Reveal>
         </div>
       </div>

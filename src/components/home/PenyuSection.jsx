@@ -218,7 +218,7 @@ function InteractiveTurtlePart({ part, isActive, onActivate, onDeactivate, onSel
       </button>
 
       <div
-        className={`pointer-events-none absolute z-30 inline-flex min-w-[7.5rem] items-center justify-center rounded-full border px-4 py-2 text-xs font-semibold tracking-[0.08em] text-white transition-all duration-300 sm:min-w-[9rem] sm:text-sm ${
+        className={`type-caption pointer-events-none absolute z-30 inline-flex min-w-[7.5rem] items-center justify-center rounded-full border px-4 py-2 font-semibold tracking-[0.08em] text-white transition-all duration-300 sm:min-w-[9rem] ${
           isActive
             ? 'translate-y-0 border-[#ffe17c]/56 bg-[rgba(96,58,0,0.84)] opacity-100 shadow-[0_18px_40px_rgba(255,184,0,0.22)]'
             : 'translate-y-1 border-white/14 bg-[rgba(255,255,255,0.08)] opacity-0'
@@ -333,7 +333,7 @@ function AnatomyDialog({ part, onClose, copy }) {
           <div className="flex items-start justify-between gap-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#8fdcff]/84">{copy.dialogLabel}</p>
-              <h3 className="mt-3 font-display text-3xl text-white sm:text-4xl">{part.title}</h3>
+              <h3 className="type-subsection-title mt-3 font-display text-white">{part.title}</h3>
             </div>
 
             <button
@@ -347,10 +347,10 @@ function AnatomyDialog({ part, onClose, copy }) {
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <span className="rounded-full border border-[#9edfff]/28 bg-[#0a2a7d]/52 px-4 py-2 text-sm font-semibold text-[#dff8ff]">
+            <span className="type-caption rounded-full border border-[#9edfff]/28 bg-[#0a2a7d]/52 px-4 py-2 font-semibold text-[#dff8ff]">
               {copy.selectedObject}: {part.objectLabel}
             </span>
-            <span className="rounded-full border border-white/14 bg-white/8 px-4 py-2 text-sm text-white/78">
+            <span className="type-caption rounded-full border border-white/14 bg-white/8 px-4 py-2 text-white/78">
               {copy.previewLabel}
             </span>
           </div>
@@ -359,7 +359,7 @@ function AnatomyDialog({ part, onClose, copy }) {
             <DialogTurtlePreview activePartId={part.id} />
           </div>
 
-          <p className="mt-6 text-sm leading-7 text-white/86 sm:text-base sm:leading-8">{part.description}</p>
+          <p className="type-body mt-6 text-white/86">{part.description}</p>
         </div>
       </div>
     </div>
@@ -395,8 +395,8 @@ function SpeciesCard({ species, index }) {
         >
           <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${species.accent} opacity-90`} />
           <div className={`relative z-20 text-left ${isEven ? '' : 'lg:text-right'}`}>
-            <h3 className="font-display text-[1.62rem] text-[#ffd900] sm:text-[1.95rem]">{species.title}</h3>
-            <p className="mt-3 text-[0.98rem] leading-7 text-white/84 sm:text-[1.08rem] sm:leading-8">
+            <h3 className="type-subsection-title font-display text-[#ffd900]">{species.title}</h3>
+            <p className="type-body mt-3 text-white/84">
               {species.description}
             </p>
           </div>
@@ -468,7 +468,7 @@ function PenyuSection() {
             <Reveal
               as="h1"
               variant="zoom"
-              className="font-display text-4xl leading-tight text-shadow-[0_4px_18px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl"
+              className="type-hero-title font-display text-shadow-[0_4px_18px_rgba(0,0,0,0.55)]"
             >
               {copy.turtle.hero.titleBefore}
               <span className="text-[#ffd900]">{copy.turtle.hero.titleHighlight}</span>
@@ -477,7 +477,7 @@ function PenyuSection() {
             <Reveal
               as="p"
               delay={140}
-              className="mt-5 max-w-5xl text-sm leading-7 text-white/92 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)] sm:text-base lg:text-[1.3rem] lg:leading-9"
+              className="type-body-lg mt-5 max-w-5xl text-white/92 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)]"
             >
               {copy.turtle.hero.description}
             </Reveal>
@@ -485,7 +485,7 @@ function PenyuSection() {
         </div>
       </section>
 
-      <section className="section-overlap relative isolate overflow-hidden pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
+      <section className="section-overlap relative isolate overflow-hidden pb-20 pt-15 sm:pb-24 sm:pt-15 lg:pb-28 lg:pt-40">
         <AdaptiveBackground src={anatomyBg} objectPosition="center 56%" />
         <div className="absolute inset-x-0 -top-24 bottom-0 h-[calc(100%+6rem)] bg-[linear-gradient(180deg,rgba(4,18,88,0.82)_0%,rgba(5,21,88,0.68)_26%,rgba(3,15,62,0.9)_100%)]" />
         <div className="absolute inset-x-0 -top-24 bottom-0 h-[calc(100%+6rem)] bg-[radial-gradient(circle_at_center,rgba(125,217,255,0.14),rgba(125,217,255,0)_42%)]" />
@@ -498,15 +498,15 @@ function PenyuSection() {
         <div className="relative z-20 mx-auto w-full max-w-[92rem] px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="rounded-[2.2rem] border border-[#6fd7ff]/26 bg-[linear-gradient(145deg,rgba(7,31,112,0.46),rgba(4,16,70,0.58)_48%,rgba(3,11,44,0.72)_100%)] p-4 shadow-[0_28px_80px_rgba(1,10,48,0.38)] backdrop-blur-xl sm:p-6 lg:p-8">
             <Reveal variant="up" className="text-center">
-              <h3 className="font-display text-2xl text-white sm:text-3xl">
+              <h3 className="type-subsection-title font-display text-white">
                 {copy.turtle.anatomy.titleBefore}<span className="text-[#ffd900]">{copy.turtle.anatomy.titleHighlight}</span>
               </h3>
-              <p className="mt-3 text-sm text-white/72 sm:text-base">
+              <p className="type-body mt-3 text-white/72">
                 {copy.turtle.anatomy.helper}
               </p>
             </Reveal>
 
-            <div className="relative mx-auto mt-10 w-full max-w-[36rem]">
+            <div className="relative mx-auto w-full max-w-[36rem]">
               <div className="relative mx-auto aspect-[5/4] w-full max-w-[28rem] overflow-visible rounded-[2rem] border border-[#9edfff]/24 shadow-[0_24px_60px_rgba(0,0,0,0.3)]">
                 <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit] bg-[radial-gradient(circle_at_top,rgba(126,212,255,0.1),rgba(126,212,255,0)_28%),linear-gradient(180deg,rgba(7,25,92,0.46),rgba(5,15,58,0.38)_35%,rgba(5,18,66,0.52)_100%)]">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,217,0,0.08),rgba(255,217,0,0)_44%)]" />
@@ -528,14 +528,14 @@ function PenyuSection() {
               </div>
             </div>
 
-            <p className="mt-5 text-center text-xs text-white/62 sm:text-sm">
+            <p className="type-caption mt-5 text-center text-white/62">
               {copy.turtle.anatomy.footer}
             </p>
           </div>
         </div>
       </section>
 
-      <section className="section-overlap relative isolate overflow-hidden pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
+      <section className="section-overlap relative isolate overflow-hidden pb-20 pt-20 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-25">
         <AdaptiveBackground src={speciesBg} objectPosition="center 50%" />
         <div className="absolute inset-x-0 -top-24 bottom-0 h-[calc(100%+6rem)] bg-[linear-gradient(180deg,rgba(4,18,88,0.76)_0%,rgba(5,23,96,0.68)_22%,rgba(3,16,74,0.88)_56%,rgba(2,10,40,0.96)_100%)]" />
         <div className="absolute inset-x-0 -top-24 bottom-0 h-[calc(100%+6rem)] bg-[radial-gradient(circle_at_top,rgba(125,217,255,0.14),rgba(125,217,255,0)_28%),radial-gradient(circle_at_bottom,rgba(125,217,255,0.08),rgba(125,217,255,0)_36%)]" />
@@ -545,11 +545,11 @@ function PenyuSection() {
 
         <div className="relative z-20 mx-auto w-full max-w-[92rem] px-6 sm:px-8 lg:px-12 xl:px-16">
           <Reveal variant="up" className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#8fdcff]/82">{copy.turtle.species.kicker}</p>
-            <h3 className="mt-4 font-display text-3xl text-white sm:text-4xl lg:text-5xl">
+            <p className="type-kicker text-[#8fdcff]/82">{copy.turtle.species.kicker}</p>
+            <h3 className="type-section-title mt-4 font-display text-white">
               {copy.turtle.species.titleBefore}<span className="text-[#ffd900]">{copy.turtle.species.titleHighlight}</span>
             </h3>
-            <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-white/78 sm:text-base">
+            <p className="type-body-lg mx-auto mt-4 max-w-3xl text-white/78">
               {copy.turtle.species.description}
             </p>
           </Reveal>

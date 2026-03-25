@@ -44,7 +44,7 @@ const en = {
       titleBefore: 'Why Are ',
       titleHighlight: 'Sea Turtles Important?',
       description:
-        'Sea turtles are more than just marine animals. They help maintain ocean balance, from coral reefs to seagrass beds. If sea turtles disappear, life in the ocean can be disrupted as well. Indonesia is one of the world’s important homes for sea turtles, and many of its beaches remain nesting sites they return to every year.',
+        'Behind their calm movements, sea turtles play a vital role in sustaining marine life. They help maintain the balance of nature, even in ways we may not always realize. If sea turtles disappear, the impact will ripple across the entire ocean ecosystem. Indonesia is one of the most important places in their life journey. Protecting sea turtles is not just about saving a single species, but about preserving the future of our oceans.',
     },
     threat: {
       titleHighlight: 'Threats ',

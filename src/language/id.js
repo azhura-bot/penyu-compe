@@ -44,7 +44,7 @@ const id = {
       titleBefore: 'Mengapa',
       titleHighlight: 'Penyu Penting?',
       description:
-        'Penyu bukan sekadar hewan laut biasa. Mereka punya peran penting menjaga keseimbangan laut, dari terumbu karang sampai padang lamun. Kalau penyu hilang, kehidupan di laut juga bisa ikut terganggu. Indonesia termasuk rumah penting bagi penyu dunia. Banyak pantai di negeri ini jadi tempat mereka kembali setiap tahun untuk bertelur.',
+        'Di balik gerakannya yang tenang, penyu memegang peran penting bagi kehidupan laut. Mereka menjaga keseimbangan alam yang mungkin tidak selalu kita sadari. Jika penyu menghilang, dampaknya akan terasa ke seluruh ekosistem laut. Indonesia menjadi salah satu tempat paling penting bagi perjalanan hidup mereka. Menjaga penyu bukan hanya tentang satu spesies, tapi tentang masa depan laut kita bersama.',
     },
     threat: {
       titleHighlight: 'Ancaman ',

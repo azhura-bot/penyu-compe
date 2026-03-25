@@ -25,7 +25,7 @@ function ThreatCard({ title, description, image, index }) {
           className="h-full w-full object-cover transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,11,28,0.14)_0%,rgba(5,14,38,0.22)_34%,rgba(3,17,79,0.58)_100%)]" />
-        <div className="absolute inset-x-5 bottom-5 text-left text-base font-bold leading-tight text-white text-shadow-[0_4px_18px_rgba(0,0,0,0.82)] sm:inset-x-6 sm:bottom-6 sm:text-[1.15rem]">
+        <div className="type-card-title absolute inset-x-5 bottom-5 text-left text-white text-shadow-[0_4px_18px_rgba(0,0,0,0.82)] sm:inset-x-6 sm:bottom-6">
           {title}
         </div>
       </div>
@@ -34,8 +34,8 @@ function ThreatCard({ title, description, image, index }) {
 
       <div className="absolute inset-0 flex translate-x-[-100%] flex-col justify-end p-5 transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 sm:p-6">
         <div className="rounded-[1.2rem] border border-white/18 bg-[rgba(10,44,102,0.42)] p-5 shadow-[0_24px_44px_rgba(0,0,0,0.24)] backdrop-blur-sm">
-          <h3 className="text-lg font-bold leading-tight text-white sm:text-[1.35rem]">{title}</h3>
-          <p className="mt-3 text-sm leading-6 text-white/88 sm:text-[0.98rem]">
+          <h3 className="type-card-title text-white">{title}</h3>
+          <p className="type-body mt-3 text-white/88">
             {description}
           </p>
         </div>
@@ -52,7 +52,7 @@ function ThreatSection() {
   }))
 
   return (
-    <section id="ancaman-penyu" className="section-overlap relative isolate flex min-h-screen items-center overflow-visible pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
+    <section id="ancaman-penyu" className="section-overlap relative isolate flex min-h-screen items-center overflow-visible pb-20 pt-20 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-25">
       <img
         src={threatBg}
         alt=""
@@ -72,14 +72,14 @@ function ThreatSection() {
           <Reveal
             as="h2"
             variant="up"
-            className="font-display text-3xl leading-tight text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl"
+            className="type-section-title font-display text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)]"
           >
             <span className="text-[#ffd900]">{copy.home.threat.titleHighlight}</span>{copy.home.threat.titleAfter}
           </Reveal>
           <Reveal
             as="p"
             delay={120}
-            className="mx-auto mt-5 max-w-4xl text-sm leading-7 text-white/90 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)] sm:text-base lg:text-lg"
+            className="type-body-lg mx-auto mt-5 max-w-4xl text-white/90 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)]"
           >
             {copy.home.threat.description}
           </Reveal>

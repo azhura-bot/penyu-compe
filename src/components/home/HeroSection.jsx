@@ -85,7 +85,7 @@ function HeroSection({ prioritizeVideo = false, onVideoReady, onVideoError }) {
               as="h1"
               variant="zoom"
               distance="56px"
-              className="text-4xl font-bold leading-tight text-white [text-shadow:0_4px_8px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl"
+              className="type-hero-title text-white [text-shadow:0_4px_8px_rgba(0,0,0,0.55)]"
             >
               {copy.home.hero.title}
             </Reveal>
@@ -94,7 +94,7 @@ function HeroSection({ prioritizeVideo = false, onVideoReady, onVideoError }) {
               as="p"
               delay={140}
               distance="46px"
-              className="mt-4 text-sm leading-relaxed text-white/90 [text-shadow:0_4px_24px_rgba(0,0,0,0.8)] sm:mt-6 sm:text-base lg:text-lg"
+              className="type-body-lg mt-4 text-white/90 [text-shadow:0_4px_24px_rgba(0,0,0,0.8)] sm:mt-6"
             >
               {copy.home.hero.description}
             </Reveal>
@@ -105,7 +105,7 @@ function HeroSection({ prioritizeVideo = false, onVideoReady, onVideoError }) {
               delay={260}
               variant="pop"
               distance="34px"
-              className="group mt-6 inline-flex items-center gap-3 rounded-full border-2 border-[#ffd900] px-6 py-3 text-sm font-bold text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.45)] transition-all hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f] sm:mt-8 sm:text-base"
+              className="type-button group mt-6 inline-flex items-center gap-3 rounded-full border-2 border-[#ffd900] px-6 py-3 text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.45)] transition-all hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f] sm:mt-8"
             >
               <span>{copy.home.hero.button}</span>
               <span className="text-[#ffd900] transition group-hover:text-white group-hover:translate-x-1">

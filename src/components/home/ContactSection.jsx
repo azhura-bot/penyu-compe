@@ -27,7 +27,7 @@ function ContactSection() {
         <Reveal
           as="h2"
           variant="up"
-          className="font-display text-3xl leading-tight text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl"
+          className="type-section-title font-display text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)]"
         >
           <span className="text-white">{copy.home.contact.titleBefore}</span>
           <span className="text-[#ffd900]">{copy.home.contact.titleHighlight}</span>
@@ -35,7 +35,7 @@ function ContactSection() {
         <Reveal
           as="p"
           delay={120}
-          className="mx-auto mt-5 max-w-4xl text-sm leading-7 text-white/92 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)] sm:text-base lg:text-lg"
+          className="type-body-lg mx-auto mt-5 max-w-4xl text-white/92 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)]"
         >
           {copy.home.contact.description}
         </Reveal>
@@ -45,7 +45,7 @@ function ContactSection() {
           delay={240}
           variant="pop"
           distance="30px"
-          className="mt-8 inline-flex items-center justify-center rounded-full border-2 border-[#ffd900] px-6 py-3 text-sm font-bold text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.45)] transition hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f] sm:text-base"
+          className="type-button mt-8 inline-flex items-center justify-center rounded-full border-2 border-[#ffd900] px-6 py-3 text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.45)] transition hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f]"
         >
           <span>{copy.home.contact.button}</span>
         </Reveal>

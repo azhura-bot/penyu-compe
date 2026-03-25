@@ -6,11 +6,11 @@ import Reveal from '../motion/Reveal'
 
 function ContactField({ label, id, placeholder, textarea = false, type = 'text' }) {
   const inputClassName =
-    'w-full rounded-[1.1rem] border border-white/55 bg-[linear-gradient(135deg,rgba(255,255,255,0.16),rgba(255,255,255,0.06))] px-4 py-3 text-sm text-white outline-none backdrop-blur-md transition placeholder:text-white/42 focus:border-[#ffd900] focus:bg-white/12 focus:ring-2 focus:ring-[#ffd900]/28 sm:text-base'
+    'type-body w-full rounded-[1.1rem] border border-white/55 bg-[linear-gradient(135deg,rgba(255,255,255,0.16),rgba(255,255,255,0.06))] px-4 py-3 text-white outline-none backdrop-blur-md transition placeholder:text-white/42 focus:border-[#ffd900] focus:bg-white/12 focus:ring-2 focus:ring-[#ffd900]/28'
 
   return (
     <label htmlFor={id} className="block">
-      <span className="mb-2 block text-sm font-medium text-white/88 sm:text-[0.95rem]">{label}</span>
+      <span className="type-label mb-2 block text-white/88">{label}</span>
       {textarea ? (
         <textarea
           id={id}
@@ -83,21 +83,21 @@ function ContactPageSection() {
                   as="p"
                   variant="down"
                   delay={140}
-                  className="font-display text-4xl leading-none text-[#ffd900] text-shadow-[0_6px_18px_rgba(0,0,0,0.35)] sm:text-5xl"
+                  className="type-section-title font-display text-[#ffd900] text-shadow-[0_6px_18px_rgba(0,0,0,0.35)]"
                 >
                   {copy.contactPage.kicker}
                 </Reveal>
                 <Reveal
                   as="h1"
                   delay={200}
-                  className="mt-3 text-2xl font-semibold text-white text-shadow-[0_4px_18px_rgba(0,0,0,0.45)] sm:text-3xl"
+                  className="type-subsection-title mt-3 text-white text-shadow-[0_4px_18px_rgba(0,0,0,0.45)]"
                 >
                   {copy.contactPage.title}
                 </Reveal>
                 <Reveal
                   as="p"
                   delay={260}
-                  className="mt-5 max-w-xl text-justify text-sm leading-7 text-white/84 sm:text-base lg:text-lg"
+                  className="type-body-lg mt-5 max-w-xl text-justify text-white/84"
                 >
                   {copy.contactPage.description}
                 </Reveal>
@@ -120,7 +120,7 @@ function ContactPageSection() {
                 <Reveal
                   as="h2"
                   delay={220}
-                  className="font-display text-3xl text-white text-shadow-[0_4px_16px_rgba(0,0,0,0.35)] sm:text-4xl"
+                  className="type-subsection-title font-display text-white text-shadow-[0_4px_16px_rgba(0,0,0,0.35)]"
                 >
                   {copy.contactPage.formTitleBefore}
                   <span className="text-[#ffd900]">{copy.contactPage.formTitleHighlight}</span>
@@ -152,7 +152,7 @@ function ContactPageSection() {
 
                   <button
                     type="submit"
-                    className="inline-flex min-w-[8.75rem] items-center justify-center rounded-full border-2 border-[#ffd900] bg-transparent px-8 py-3.5 text-sm font-bold text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.45)] transition hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f] sm:text-base"
+                    className="type-button inline-flex min-w-[8.75rem] items-center justify-center rounded-full border-2 border-[#ffd900] bg-transparent px-8 py-3.5 text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.45)] transition hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f]"
                   >
                     {copy.contactPage.submit}
                   </button>

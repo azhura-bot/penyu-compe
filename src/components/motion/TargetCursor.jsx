@@ -2,138 +2,151 @@ import { useEffect, useRef } from 'react'
 
 import gsap from 'gsap'
 
-function TargetCursor({ containerRef, selector = '[data-cursor-target]' }) {
+import turtleCursor from '../../assets/images/penyu.png'
+
+function TargetCursor({ containerRef }) {
   const cursorRef = useRef(null)
-  const labelRef = useRef(null)
+  const turtleRef = useRef(null)
+  const trailLayerRef = useRef(null)
   const pointerRef = useRef({ x: 0, y: 0 })
-  const prefersReducedMotion =
-    typeof window !== 'undefined' &&
-    window.matchMedia &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const spawnTimeRef = useRef(0)
 
   useEffect(() => {
-    const container = containerRef.current
+    const container = containerRef?.current ?? document.documentElement
     const cursor = cursorRef.current
-    const label = labelRef.current
+    const turtle = turtleRef.current
+    const trailLayer = trailLayerRef.current
 
-    if (!container || !cursor || !label || prefersReducedMotion) {
+    if (!container || !cursor || !turtle || !trailLayer) {
       return undefined
     }
 
-    const finePointer = window.matchMedia('(pointer: fine)').matches
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
 
-    if (!finePointer) {
+    if (reducedMotionQuery.matches) {
       return undefined
     }
 
-    const moveX = gsap.quickTo(cursor, 'x', { duration: 0.22, ease: 'power3.out' })
-    const moveY = gsap.quickTo(cursor, 'y', { duration: 0.22, ease: 'power3.out' })
-    let activeTarget = null
+    const root = document.documentElement
+    let isVisible = false
+    cursor.style.opacity = '0'
+    cursor.style.transform = 'translate3d(-9999px, -9999px, 0)'
 
     const showCursor = () => {
-      gsap.to(cursor, { autoAlpha: 1, duration: 0.18, ease: 'power2.out' })
+      if (!isVisible) {
+        isVisible = true
+        root.classList.add('has-fancy-cursor')
+        cursor.style.opacity = '1'
+      }
     }
 
     const hideCursor = () => {
-      activeTarget = null
-      gsap.to(cursor, { autoAlpha: 0, duration: 0.18, ease: 'power2.out' })
+      if (!isVisible) {
+        return
+      }
+
+      isVisible = false
+      root.classList.remove('has-fancy-cursor')
+      cursor.style.opacity = '0'
     }
 
-    const resetCursor = () => {
-      label.textContent = ''
+    const spawnBubble = (x, y, deltaX, deltaY, multiplier = 1) => {
+      for (let index = 0; index < multiplier; index += 1) {
+        const bubble = document.createElement('span')
+        const size = gsap.utils.random(5, 12, 1)
+        const driftX = gsap.utils.random(-14, 14, 1) - deltaX * 0.18
+        const driftY = gsap.utils.random(-26, -10, 1) - deltaY * 0.08
 
-      gsap.to(cursor, {
-        width: 42,
-        height: 42,
-        borderRadius: 999,
-        '--cursor-scale': 1,
-        duration: 0.22,
-        ease: 'power2.out',
-      })
-    }
+        bubble.className = 'cursor-bubble'
+        bubble.style.left = `${x - deltaX * 0.4 + gsap.utils.random(-8, 8, 1)}px`
+        bubble.style.top = `${y - deltaY * 0.4 + gsap.utils.random(-8, 8, 1)}px`
+        bubble.style.setProperty('--cursor-bubble-size', `${size}px`)
+        bubble.style.setProperty('--cursor-bubble-drift-x', `${driftX}px`)
+        bubble.style.setProperty('--cursor-bubble-drift-y', `${driftY}px`)
+        bubble.style.setProperty('--cursor-bubble-duration', `${gsap.utils.random(620, 1180, 1)}ms`)
+        bubble.style.setProperty('--cursor-bubble-opacity', `${gsap.utils.random(0.18, 0.4, 0.01)}`)
 
-    const moveToPointer = () => {
-      moveX(pointerRef.current.x)
-      moveY(pointerRef.current.y)
-    }
+        bubble.addEventListener(
+          'animationend',
+          () => {
+            bubble.remove()
+          },
+          { once: true },
+        )
 
-    const activateTarget = (target) => {
-      activeTarget = target
-      const rect = target.getBoundingClientRect()
-
-      label.textContent = target.dataset.cursorLabel ?? target.getAttribute('aria-label') ?? ''
-
-      gsap.to(cursor, {
-        width: rect.width + 26,
-        height: rect.height + 18,
-        borderRadius: 24,
-        '--cursor-scale': 1.08,
-        duration: 0.22,
-        ease: 'power3.out',
-      })
-
-      moveX(rect.left + rect.width / 2)
-      moveY(rect.top + rect.height / 2)
-    }
-
-    const handlePointerMove = (event) => {
-      pointerRef.current = { x: event.clientX, y: event.clientY }
-
-      if (!activeTarget) {
-        moveToPointer()
+        trailLayer.appendChild(bubble)
       }
     }
 
-    const targets = Array.from(container.querySelectorAll(selector))
-    const cleanupFns = targets.map((target) => {
-      const onEnter = () => activateTarget(target)
-      const onLeave = () => {
-        activeTarget = null
-        resetCursor()
-        moveToPointer()
+    const handleMouseMove = (event) => {
+      const previousPointer = pointerRef.current
+      const nextPointer = { x: event.clientX, y: event.clientY }
+      const deltaX = nextPointer.x - previousPointer.x
+      const deltaY = nextPointer.y - previousPointer.y
+      const speed = Math.hypot(deltaX, deltaY)
+
+      pointerRef.current = nextPointer
+      showCursor()
+
+      cursor.style.transform = `translate3d(${nextPointer.x}px, ${nextPointer.y}px, 0)`
+      turtle.style.setProperty('--cursor-heading', `${gsap.utils.clamp(-18, 18, deltaX * 0.55)}deg`)
+      turtle.style.setProperty('--cursor-swim-scale', `${gsap.utils.clamp(1, 1.1, 1 + speed / 240)}`)
+
+      const now = performance.now()
+
+      if (speed > 1.5 && now - spawnTimeRef.current > 24) {
+        spawnBubble(nextPointer.x, nextPointer.y, deltaX, deltaY, speed > 24 ? 2 : 1)
+        spawnTimeRef.current = now
       }
+    }
 
-      target.addEventListener('pointerenter', onEnter)
-      target.addEventListener('pointerleave', onLeave)
-
-      return () => {
-        target.removeEventListener('pointerenter', onEnter)
-        target.removeEventListener('pointerleave', onLeave)
+    const handlePointerDown = (event) => {
+      if (event.pointerType === 'touch') {
+        hideCursor()
       }
-    })
+    }
 
-    container.addEventListener('pointerenter', showCursor)
-    container.addEventListener('pointerleave', hideCursor)
-    container.addEventListener('pointermove', handlePointerMove)
+    const handleWindowMouseOut = (event) => {
+      if (!event.relatedTarget) {
+        hideCursor()
+      }
+    }
 
-    resetCursor()
+    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('pointerdown', handlePointerDown)
+    window.addEventListener('blur', hideCursor)
+    window.addEventListener('mouseout', handleWindowMouseOut)
 
     return () => {
-      cleanupFns.forEach((cleanup) => cleanup())
-      container.removeEventListener('pointerenter', showCursor)
-      container.removeEventListener('pointerleave', hideCursor)
-      container.removeEventListener('pointermove', handlePointerMove)
+      hideCursor()
+      root.classList.remove('has-fancy-cursor')
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('pointerdown', handlePointerDown)
+      window.removeEventListener('blur', hideCursor)
+      window.removeEventListener('mouseout', handleWindowMouseOut)
     }
-  }, [containerRef, prefersReducedMotion, selector])
-
-  if (prefersReducedMotion) {
-    return null
-  }
+  }, [containerRef])
 
   return (
-    <div
-      ref={cursorRef}
-      aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[120] hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center border border-[#9ddfff]/80 bg-[radial-gradient(circle_at_center,rgba(157,223,255,0.18),rgba(157,223,255,0.04)_55%,rgba(157,223,255,0)_100%)] shadow-[0_0_30px_rgba(90,207,255,0.24)] backdrop-blur-sm [transform:translate3d(-50%,-50%,0)_scale(var(--cursor-scale,1))] md:flex"
-      style={{ opacity: 0, visibility: 'hidden' }}
-    >
-      <div className="absolute inset-[6px] rounded-[inherit] border border-white/16" />
-      <div className="h-1.5 w-1.5 rounded-full bg-white/90 shadow-[0_0_12px_rgba(255,255,255,0.6)]" />
-      <span
-        ref={labelRef}
-        className="absolute -bottom-9 left-1/2 min-w-max -translate-x-1/2 rounded-full border border-[#9ddfff]/35 bg-[#041857]/76 px-3 py-1 text-[0.7rem] font-semibold tracking-[0.08em] text-[#dff8ff] shadow-[0_12px_24px_rgba(2,9,40,0.32)]"
-      />
-    </div>
+    <>
+      <div ref={trailLayerRef} aria-hidden="true" className="pointer-events-none fixed inset-0 z-[118]" />
+
+      <div
+        ref={cursorRef}
+        aria-hidden="true"
+        className="pointer-events-none fixed left-0 top-0 z-[120] h-0 w-0 overflow-visible"
+      >
+        <div
+          className="absolute left-0 top-0 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(125,216,255,0.26),rgba(125,216,255,0.1)_52%,rgba(125,216,255,0)_100%)] blur-lg"
+        />
+        <div ref={turtleRef} className="cursor-turtle-vehicle absolute left-0 top-0">
+          <div
+            className="cursor-turtle-image h-16 w-16 bg-contain bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${turtleCursor})` }}
+          />
+        </div>
+      </div>
+    </>
   )
 }
 
