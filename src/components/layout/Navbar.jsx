@@ -146,21 +146,63 @@ function Navbar({ activeKey = 'home' }) {
 
             <div className="flex items-center gap-2 sm:gap-2.5">
               <div ref={languageMenuRef} className="relative">
-                <button
-                  type="button"
-                  aria-label={copy.languageSwitcher.buttonLabel}
-                  aria-haspopup="menu"
-                  aria-expanded={isLanguageMenuOpen}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/24 bg-white/8 shadow-[0_12px_22px_rgba(1,11,61,0.22)] transition hover:border-white/36 hover:bg-white/12 sm:h-11 sm:w-11"
-                  onClick={() => setIsLanguageMenuOpen((open) => !open)}
-                >
-                  <span
-                    key={language}
-                    className="inline-flex h-7 w-7 scale-100 items-center justify-center overflow-hidden rounded-full ring-1 ring-white/24 transition duration-300 ease-out sm:h-8 sm:w-8"
+                <div className="flex items-center gap-1 rounded-full border border-white/24 bg-white/8 p-1 shadow-[0_12px_22px_rgba(1,11,61,0.22)] sm:gap-2 sm:p-1.5">
+                  <button
+                    type="button"
+                    aria-label={copy.languageSwitcher.options.id.label}
+                    className={`relative flex items-center gap-1.5 transition-all duration-200 sm:gap-2 ${
+                      language === 'id'
+                        ? 'scale-105'
+                        : 'opacity-70 hover:opacity-100 hover:scale-105'
+                    }`}
+                    onClick={() => {
+                      setLanguage('id')
+                      setIsLanguageMenuOpen(false)
+                      setIsMenuOpen(false)
+                    }}
                   >
-                    <FlagIcon language={language} className="h-full w-full rounded-full object-cover shadow-[0_6px_14px_rgba(0,0,0,0.18)]" />
-                  </span>
-                </button>
+                    <span className={`inline-flex h-7 w-7 items-center justify-center overflow-hidden rounded-full sm:h-8 sm:w-8 ${
+                      language === 'id'
+                        ? 'ring-2 ring-white/80 ring-offset-1 ring-offset-white/20'
+                        : ''
+                    }`}>
+                      <FlagIcon language="id" className="h-full w-full rounded-full object-cover shadow-[0_6px_14px_rgba(0,0,0,0.18)]" />
+                    </span>
+                    <span className={`text-[0.7rem] font-semibold uppercase sm:text-[0.75rem] ${
+                      language === 'id' ? 'text-white' : 'text-white/80'
+                    }`}>
+                      ID
+                    </span>
+                  </button>
+                  <div className="h-5 w-px bg-white/20 sm:h-6"></div>
+                  <button
+                    type="button"
+                    aria-label={copy.languageSwitcher.options.en.label}
+                    className={`relative flex items-center gap-1.5 transition-all duration-200 sm:gap-2 ${
+                      language === 'en'
+                        ? 'scale-105'
+                        : 'opacity-70 hover:opacity-100 hover:scale-105'
+                    }`}
+                    onClick={() => {
+                      setLanguage('en')
+                      setIsLanguageMenuOpen(false)
+                      setIsMenuOpen(false)
+                    }}
+                  >
+                    <span className={`inline-flex h-7 w-7 items-center justify-center overflow-hidden rounded-full sm:h-8 sm:w-8 ${
+                      language === 'en'
+                        ? 'ring-2 ring-white/80 ring-offset-1 ring-offset-white/20'
+                        : ''
+                    }`}>
+                      <FlagIcon language="en" className="h-full w-full rounded-full object-cover shadow-[0_6px_14px_rgba(0,0,0,0.18)]" />
+                    </span>
+                    <span className={`text-[0.7rem] font-semibold uppercase sm:text-[0.75rem] ${
+                      language === 'en' ? 'text-white' : 'text-white/80'
+                    }`}>
+                      EN
+                    </span>
+                  </button>
+                </div>
 
                 <div
                   className={`absolute right-0 top-[calc(100%+0.45rem)] z-50 rounded-[1rem] border border-white/38 bg-[linear-gradient(135deg,rgba(255,255,255,0.24),rgba(255,255,255,0.1)_35%,rgba(170,220,255,0.1)_100%)] p-1.5 shadow-[0_16px_28px_rgba(1,11,61,0.28)] backdrop-blur-2xl transition duration-300 ${
