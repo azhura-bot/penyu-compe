@@ -163,13 +163,13 @@ function Navbar({ activeKey = 'home' }) {
                   >
                     <span className={`inline-flex h-7 w-7 items-center justify-center overflow-hidden rounded-full sm:h-8 sm:w-8 ${
                       language === 'id'
-                        ? 'ring-2 ring-white/80 ring-offset-1 ring-offset-white/20'
+                        ? 'ring-2 ring-white/80 ring-offset-1 ring-offset-white/20 shadow-[0_0_12px_rgba(255,255,255,0.5)]'
                         : ''
                     }`}>
                       <FlagIcon language="id" className="h-full w-full rounded-full object-cover shadow-[0_6px_14px_rgba(0,0,0,0.18)]" />
                     </span>
                     <span className={`text-[0.7rem] font-semibold uppercase sm:text-[0.75rem] ${
-                      language === 'id' ? 'text-white' : 'text-white/80'
+                      language === 'id' ? 'text-white drop-shadow-[0_0_4px_rgba(255,255,255,0.6)]' : 'text-white/80'
                     }`}>
                       ID
                     </span>
@@ -191,13 +191,13 @@ function Navbar({ activeKey = 'home' }) {
                   >
                     <span className={`inline-flex h-7 w-7 items-center justify-center overflow-hidden rounded-full sm:h-8 sm:w-8 ${
                       language === 'en'
-                        ? 'ring-2 ring-white/80 ring-offset-1 ring-offset-white/20'
+                        ? 'ring-2 ring-white/80 ring-offset-1 ring-offset-white/20 shadow-[0_0_12px_rgba(255,255,255,0.5)]'
                         : ''
                     }`}>
                       <FlagIcon language="en" className="h-full w-full rounded-full object-cover shadow-[0_6px_14px_rgba(0,0,0,0.18)]" />
                     </span>
                     <span className={`text-[0.7rem] font-semibold uppercase sm:text-[0.75rem] ${
-                      language === 'en' ? 'text-white' : 'text-white/80'
+                      language === 'en' ? 'text-white drop-shadow-[0_0_4px_rgba(255,255,255,0.6)]' : 'text-white/80'
                     }`}>
                       EN
                     </span>
