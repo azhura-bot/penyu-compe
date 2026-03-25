@@ -277,12 +277,6 @@ const en = {
     secondaryAction: 'See Programs',
     navigationTitle: 'Navigation',
     exploreTitle: 'Explore',
-    navItems: [
-      { key: 'home', href: '/', type: 'route' },
-      { key: 'about-community', label: 'About the Community', href: '/tentang', type: 'route' },
-      { key: 'threats', label: 'Sea Turtle Threats', href: '/#ancaman-penyu', type: 'anchor' },
-      { key: 'programs', label: 'Our Programs', href: '/#program', type: 'anchor' },
-    ],
     exploreItems: [
       { key: 'contact-us', label: 'Contact Us', href: '/kontak', type: 'route' },
       { key: 'our-documentation', label: 'Our Documentation', href: '/tentang', type: 'route' },

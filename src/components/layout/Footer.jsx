@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 
 import homeLogo from '../../assets/logo.png'
 import { useLanguage } from '../../context/LanguageContext'
+import { navItems } from '../../data/navigation'
 import BubbleLayer from './BubbleLayer'
 import Rectangle17Blend from './Rectangle17Blend'
 
@@ -71,8 +72,8 @@ function Footer() {
           <div>
             <p className="font-nav text-xs font-semibold uppercase tracking-[0.28em] text-[#8fdcff]/84">{copy.footer.navigationTitle}</p>
             <div className="mt-5 flex flex-col gap-3">
-              {copy.footer.navItems.map((item) => (
-                <FooterAnchor key={item.key} {...item} label={item.label ?? copy.navigation[item.key]} />
+              {navItems.map((item) => (
+                <FooterAnchor key={item.key} {...item} label={copy.navigation[item.key]} />
               ))}
             </div>
           </div>

@@ -277,12 +277,6 @@ const id = {
     secondaryAction: 'Lihat Program',
     navigationTitle: 'Navigasi',
     exploreTitle: 'Jelajahi',
-    navItems: [
-      { key: 'home', href: '/', type: 'route' },
-      { key: 'about-community', label: 'Tentang Komunitas', href: '/tentang', type: 'route' },
-      { key: 'threats', label: 'Ancaman Penyu', href: '/#ancaman-penyu', type: 'anchor' },
-      { key: 'programs', label: 'Program Kami', href: '/#program', type: 'anchor' },
-    ],
     exploreItems: [
       { key: 'contact-us', label: 'Hubungi Kami', href: '/kontak', type: 'route' },
       { key: 'our-documentation', label: 'Dokumentasi Kami', href: '/tentang', type: 'route' },
