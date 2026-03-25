@@ -1,5 +1,5 @@
 import visionBg from '../../assets/images/BG-5.png'
-import { missionItems } from '../../data/tentang'
+import { useLanguage } from '../../context/LanguageContext'
 import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
 import Reveal from '../motion/Reveal'
@@ -15,6 +15,8 @@ function GlassPanel({ children, className = '' }) {
 }
 
 function VisionMissionSection() {
+  const { copy } = useLanguage()
+
   return (
     <section className="section-overlap relative isolate overflow-visible pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
       <img
@@ -32,27 +34,26 @@ function VisionMissionSection() {
       <div className="relative z-20 mx-auto flex w-full max-w-[92rem] flex-col gap-10 px-6 sm:px-8 lg:px-12 xl:px-16">
         <Reveal variant="right" className="ml-auto w-full max-w-[36rem]">
           <h2 className="font-display text-3xl text-shadow-[0_4px_14px_rgba(0,0,0,0.5)] sm:text-4xl lg:text-5xl">
-            <span className="text-[#ffd900]">Visi </span>
-            <span className="text-white">Kami</span>
+            <span className="text-[#ffd900]">{copy.about.visionMission.visionTitleHighlight}</span>
+            <span className="text-white">{copy.about.visionMission.visionTitleAfter}</span>
           </h2>
 
           <GlassPanel className="mt-5 p-5 sm:p-6">
             <p className="text-sm leading-7 text-white/95 sm:text-base lg:text-lg">
-              Mewujudkan laut yang bersih, pantai yang aman, serta menjaga keberlangsungan penyu agar dapat terus
-              bertelur dan hidup untuk generasi mendatang.
+              {copy.about.visionMission.visionDescription}
             </p>
           </GlassPanel>
         </Reveal>
 
         <Reveal delay={160} variant="left" className="w-full max-w-[78rem]">
           <h2 className="font-display text-3xl text-shadow-[0_4px_14px_rgba(0,0,0,0.5)] sm:text-4xl lg:text-5xl">
-            <span className="text-[#ffd900]">Misi </span>
-            <span className="text-white">Kami</span>
+            <span className="text-[#ffd900]">{copy.about.visionMission.missionTitleHighlight}</span>
+            <span className="text-white">{copy.about.visionMission.missionTitleAfter}</span>
           </h2>
 
           <GlassPanel className="mt-5 p-5 sm:p-6 lg:p-7">
             <ol className="space-y-2 text-sm leading-7 text-white/95 sm:text-base lg:text-lg">
-              {missionItems.map((item) => (
+              {copy.about.visionMission.missionItems.map((item) => (
                 <li key={item} className="flex gap-3">
                   <span className="font-semibold text-[#ffd900]">*</span>
                   <span>{item}</span>

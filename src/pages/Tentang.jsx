@@ -8,7 +8,7 @@ import MusicPlayer from '../components/layout/MusicPlayer'
 function Tentang() {
   return (
     <main className="overflow-x-hidden bg-[#03114f] text-white">
-      <Navbar activeLabel="Tentang" />
+      <Navbar activeKey="about" />
       <AboutHeroSection />
       <VisionMissionSection />
       <DocumentationSection />

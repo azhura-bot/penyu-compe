@@ -1,5 +1,6 @@
 import docsBg from '../../assets/images/BG-8.png'
-import { documentationImages } from '../../data/tentang'
+import { useLanguage } from '../../context/LanguageContext'
+import { documentationImageAssets } from '../../data/tentang'
 import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
 import Reveal from '../motion/Reveal'
@@ -43,6 +44,12 @@ function DocumentationCard({ image, index }) {
 }
 
 function DocumentationSection() {
+  const { copy } = useLanguage()
+  const documentationImages = documentationImageAssets.map((image, index) => ({
+    ...image,
+    alt: copy.about.documentation.images[index] ?? `Documentation ${index + 1}`,
+  }))
+
   return (
     <section className="section-overlap relative isolate overflow-visible pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
       <img
@@ -63,16 +70,15 @@ function DocumentationSection() {
             variant="up"
             className="font-display text-3xl text-shadow-[0_4px_14px_rgba(0,0,0,0.5)] sm:text-4xl lg:text-5xl"
           >
-            <span className="text-[#ffd900]">Dokumentasi </span>
-            <span className="text-white">Kami</span>
+            <span className="text-[#ffd900]">{copy.about.documentation.titleHighlight}</span>
+            <span className="text-white">{copy.about.documentation.titleAfter}</span>
           </Reveal>
           <Reveal
             as="p"
             delay={120}
             className="mx-auto mt-5 max-w-5xl text-sm leading-7 text-white/95 text-shadow-[0_4px_20px_rgba(0,0,0,0.7)] sm:text-base lg:text-lg"
           >
-            Dokumentasi ini menampilkan berbagai kegiatan kami dalam menjaga kebersihan pantai dan melindungi penyu
-            agar tetap dapat hidup serta berkembang dengan aman.
+            {copy.about.documentation.description}
           </Reveal>
         </div>
 

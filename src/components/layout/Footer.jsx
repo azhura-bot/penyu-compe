@@ -1,20 +1,9 @@
 import { Link } from 'react-router-dom'
 
 import homeLogo from '../../assets/logo.png'
+import { useLanguage } from '../../context/LanguageContext'
 import BubbleLayer from './BubbleLayer'
 import Rectangle17Blend from './Rectangle17Blend'
-
-const footerNavItems = [
-  { label: 'Beranda', href: '/', type: 'route' },
-  { label: 'Tentang Komunitas', href: '/tentang', type: 'route' },
-  { label: 'Ancaman Penyu', href: '/#ancaman-penyu', type: 'anchor' },
-  { label: 'Program Kami', href: '/#program', type: 'anchor' },
-]
-
-const footerActionItems = [
-  { label: 'Hubungi Kami', href: '/kontak', type: 'route' },
-  { label: 'Dokumentasi Kami', href: '/tentang', type: 'route' },
-]
 
 function FooterAnchor({ href, label, type }) {
   const className =
@@ -33,6 +22,7 @@ function FooterAnchor({ href, label, type }) {
 
 function Footer() {
   const year = new Date().getFullYear()
+  const { copy } = useLanguage()
 
   return (
     <footer className="footer-overlap relative isolate overflow-hidden bg-[radial-gradient(circle_at_top,rgba(84,191,255,0.18),transparent_28%),linear-gradient(180deg,#04104a_0%,#020d35_100%)]">
@@ -48,19 +38,18 @@ function Footer() {
           <div className="max-w-xl">
             <Link to="/" className="inline-flex items-center gap-4">
               <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/16 bg-white/8 shadow-[0_12px_30px_rgba(0,0,0,0.22)] backdrop-blur-md">
-                <img src={homeLogo} alt="Logo Komunitas Penyu Nusantara" className="h-10 w-10 object-contain" />
+                <img src={homeLogo} alt={copy.common.brandAlt} className="h-10 w-10 object-contain" />
               </span>
               <span>
-                <span className="block font-display text-xl text-white sm:text-2xl">Komunitas Penyu Nusantara</span>
+                <span className="block font-display text-xl text-white sm:text-2xl">{copy.common.brandName}</span>
                 <span className="mt-1 block font-nav text-[0.72rem] font-semibold uppercase tracking-[0.32em] text-[#8fdcff]/78 sm:text-xs">
-                  Edukasi dan Konservasi Laut
+                  {copy.common.brandTagline}
                 </span>
               </span>
             </Link>
 
             <p className="mt-6 max-w-lg text-sm leading-7 text-white/78 sm:text-base">
-              Ruang edukasi yang mengajak lebih banyak orang mengenal penyu, memahami ancamannya, dan ikut menjaga
-              habitat laut melalui aksi yang nyata.
+              {copy.footer.description}
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
@@ -68,46 +57,46 @@ function Footer() {
                 to="/tentang"
                 className="inline-flex items-center justify-center rounded-full border-2 border-[#ffd900] px-6 py-3 text-sm font-bold text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.32)] transition hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f] sm:text-base"
               >
-                Mari Bergabung
+                {copy.footer.primaryAction}
               </Link>
               <a
                 href="/#program"
                 className="inline-flex items-center justify-center rounded-full border border-white/28 bg-white/8 px-6 py-3 text-sm font-semibold text-white/88 transition hover:border-white/46 hover:bg-white/14 hover:text-white sm:text-base"
               >
-                Lihat Program
+                {copy.footer.secondaryAction}
               </a>
             </div>
           </div>
 
           <div>
-            <p className="font-nav text-xs font-semibold uppercase tracking-[0.28em] text-[#8fdcff]/84">Navigasi</p>
+            <p className="font-nav text-xs font-semibold uppercase tracking-[0.28em] text-[#8fdcff]/84">{copy.footer.navigationTitle}</p>
             <div className="mt-5 flex flex-col gap-3">
-              {footerNavItems.map((item) => (
-                <FooterAnchor key={item.label} {...item} />
+              {copy.footer.navItems.map((item) => (
+                <FooterAnchor key={item.key} {...item} label={item.label ?? copy.navigation[item.key]} />
               ))}
             </div>
           </div>
 
           <div>
-            <p className="font-nav text-xs font-semibold uppercase tracking-[0.28em] text-[#8fdcff]/84">Jelajahi</p>
+            <p className="font-nav text-xs font-semibold uppercase tracking-[0.28em] text-[#8fdcff]/84">{copy.footer.exploreTitle}</p>
             <div className="mt-5 flex flex-col gap-3">
-              {footerActionItems.map((item) => (
-                <FooterAnchor key={item.label} {...item} />
+              {copy.footer.exploreItems.map((item) => (
+                <FooterAnchor key={item.key} {...item} />
               ))}
             </div>
 
             <div className="mt-7 rounded-[1.2rem] border border-white/12 bg-white/6 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-sm">
-              <p className="text-sm font-semibold text-white">Jaga pantai, jaga sarang, jaga masa depan penyu.</p>
+              <p className="text-sm font-semibold text-white">{copy.footer.quoteTitle}</p>
               <p className="mt-2 text-sm leading-6 text-white/72">
-                Setiap perhatian kecil terhadap laut membantu siklus hidup penyu tetap berlanjut.
+                {copy.footer.quoteDescription}
               </p>
             </div>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/56 sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {year} Komunitas Penyu Nusantara. Dibangun untuk edukasi dan kepedulian laut.</p>
-          <p>Pelestarian dimulai dari pengetahuan, lalu berubah menjadi tindakan.</p>
+          <p>&copy; {year} {copy.footer.copyright}</p>
+          <p>{copy.footer.closing}</p>
         </div>
       </div>
     </footer>

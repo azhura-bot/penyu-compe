@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 
 import turtleSwim from '../../assets/homepage/penyu-swim-loop.webm'
-import whyBg from '../../assets/homepage/why-bg.jpg'
+import whyBg from '../../assets/images/BG-10.png'
+import { useLanguage } from '../../context/LanguageContext'
 import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
 import Reveal from '../motion/Reveal'
@@ -10,6 +11,7 @@ function TurtleLoopVideo() {
   const [isReady, setIsReady] = useState(false)
   const canvasRef = useRef(null)
   const sourceVideoRef = useRef(null)
+  const { copy } = useLanguage()
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -111,7 +113,7 @@ function TurtleLoopVideo() {
           playsInline
           className="block h-auto w-full object-contain"
         >
-          Browser Anda tidak mendukung video HTML5.
+          {copy.common.videoFallback}
         </video>
       )}
 
@@ -126,6 +128,7 @@ function TurtleLoopVideo() {
 function WhySection() {
   const sectionRef = useRef(null)
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
+  const { copy } = useLanguage()
 
   useEffect(() => {
     const section = sectionRef.current
@@ -158,7 +161,7 @@ function WhySection() {
     <section
       id="tentang-penyu"
       ref={sectionRef}
-      className="section-overlap relative isolate flex min-h-screen items-center overflow-visible pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52"
+      className="section-overlap relative isolate flex min-h-screen items-center overflow-visible bg-[#03114f] pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52"
     >
       <img
         src={whyBg}
@@ -180,7 +183,7 @@ function WhySection() {
             variant="left"
             className="font-display text-3xl leading-tight text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl"
           >
-            Mengapa <span className="text-[#ffd900]">Penyu Penting?</span>
+            {copy.home.why.titleBefore} <span className="text-[#ffd900]">{copy.home.why.titleHighlight}</span>
           </Reveal>
 
           <Reveal
@@ -188,12 +191,7 @@ function WhySection() {
             variant="up"
             className="mt-8 hidden max-w-xl rounded-[1.7rem] border border-white/65 bg-white/16 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.35)] backdrop-blur-md lg:block sm:p-8"
           >
-            <p className="text-sm leading-7 text-white/92 sm:text-base lg:text-lg">
-              Penyu bukan sekadar hewan laut biasa. Mereka punya peran penting menjaga keseimbangan laut, dari
-              terumbu karang sampai padang lamun. Kalau penyu hilang, kehidupan di laut juga bisa ikut terganggu.
-              Indonesia termasuk rumah penting bagi penyu dunia. Banyak pantai di negeri ini jadi tempat mereka
-              kembali setiap tahun untuk bertelur.
-            </p>
+            <p className="text-sm leading-7 text-white/92 sm:text-base lg:text-lg">{copy.home.why.description}</p>
           </Reveal>
         </div>
 
@@ -210,12 +208,7 @@ function WhySection() {
             variant="up"
             className="max-w-xl rounded-[1.7rem] border border-white/65 bg-white/16 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.35)] backdrop-blur-md sm:p-8"
           >
-            <p className="text-sm leading-7 text-white/92 sm:text-base lg:text-lg">
-              Penyu bukan sekadar hewan laut biasa. Mereka punya peran penting menjaga keseimbangan laut, dari
-              terumbu karang sampai padang lamun. Kalau penyu hilang, kehidupan di laut juga bisa ikut terganggu.
-              Indonesia termasuk rumah penting bagi penyu dunia. Banyak pantai di negeri ini jadi tempat mereka
-              kembali setiap tahun untuk bertelur.
-            </p>
+            <p className="text-sm leading-7 text-white/92 sm:text-base lg:text-lg">{copy.home.why.description}</p>
           </Reveal>
         </div>
       </div>

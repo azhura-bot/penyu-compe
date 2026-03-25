@@ -1,9 +1,12 @@
 import heroBg from '../../assets/tentang/hero-bg.png'
+import { useLanguage } from '../../context/LanguageContext'
 import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
 import Reveal from '../motion/Reveal'
 
 function AboutHeroSection() {
+  const { copy } = useLanguage()
+
   return (
     <section className="relative isolate flex min-h-[44rem] items-end overflow-visible pt-28 sm:pt-32 lg:pt-36">
       <img
@@ -23,8 +26,8 @@ function AboutHeroSection() {
             variant="zoom"
             className="font-display text-4xl leading-tight text-shadow-[0_4px_18px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl"
           >
-            <span className="text-white">Komunitas </span>
-            <span className="text-[#ffd900]">Penyu Nusantara</span>
+            <span className="text-white">{copy.about.hero.titleBefore}</span>
+            <span className="text-[#ffd900]">{copy.about.hero.titleHighlight}</span>
           </Reveal>
 
           <Reveal
@@ -32,9 +35,7 @@ function AboutHeroSection() {
             delay={140}
             className="mt-5 max-w-5xl text-sm leading-7 text-white/92 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)] sm:text-base lg:text-[1.3rem] lg:leading-9"
           >
-            Komunitas Penyu Nusantara adalah sebuah gerakan kepedulian yang berfokus pada pelestarian penyu di
-            wilayah Indonesia. Komunitas ini hadir sebagai ruang kolaborasi bagi masyarakat, relawan, dan pecinta
-            lingkungan yang ingin terlibat langsung dalam menjaga keberlangsungan hidup penyu di alam.
+            {copy.about.hero.description}
           </Reveal>
         </div>
       </div>

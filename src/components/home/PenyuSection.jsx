@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 
+import { useLanguage } from '../../context/LanguageContext'
 import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
 import Reveal from '../motion/Reveal'
-import { turtleBodyParts, turtleSpecies } from '../../data/penyu'
+import { turtleBodyPartConfigs, turtleSpeciesConfigs } from '../../data/penyu'
 import anatomyBg from '../../assets/images/BG-9.png'
 import speciesBg from '../../assets/images/BG-6.png'
 import heroBg from '../../assets/tentang/hero-bg.png'
@@ -295,7 +296,7 @@ function DialogTurtlePreview({ activePartId }) {
   )
 }
 
-function AnatomyDialog({ part, onClose }) {
+function AnatomyDialog({ part, onClose, copy }) {
   useEffect(() => {
     if (!part) {
       return undefined
@@ -320,7 +321,7 @@ function AnatomyDialog({ part, onClose }) {
       <button
         type="button"
         className="absolute inset-0 bg-[rgba(2,9,35,0.78)] backdrop-blur-md"
-        aria-label="Tutup dialog"
+        aria-label={copy.closeDialog}
         onClick={onClose}
       />
       <div className="relative w-full max-w-3xl overflow-hidden rounded-[2rem] border border-[#8cd9ff]/26 bg-[linear-gradient(145deg,rgba(5,23,87,0.96),rgba(3,15,58,0.94)_54%,rgba(2,10,39,0.98)_100%)] p-6 shadow-[0_28px_70px_rgba(0,0,0,0.46)] sm:p-8">
@@ -331,14 +332,14 @@ function AnatomyDialog({ part, onClose }) {
         <div className="relative">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#8fdcff]/84">Anggota Tubuh</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#8fdcff]/84">{copy.dialogLabel}</p>
               <h3 className="mt-3 font-display text-3xl text-white sm:text-4xl">{part.title}</h3>
             </div>
 
             <button
               type="button"
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/16 bg-white/8 text-lg text-white/82 transition hover:bg-white/14 hover:text-white"
-              aria-label="Tutup"
+              aria-label={copy.closeButton}
               onClick={onClose}
             >
               x
@@ -347,10 +348,10 @@ function AnatomyDialog({ part, onClose }) {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <span className="rounded-full border border-[#9edfff]/28 bg-[#0a2a7d]/52 px-4 py-2 text-sm font-semibold text-[#dff8ff]">
-              Objek dipilih: {part.objectLabel}
+              {copy.selectedObject}: {part.objectLabel}
             </span>
             <span className="rounded-full border border-white/14 bg-white/8 px-4 py-2 text-sm text-white/78">
-              Preview objek yang dipilih
+              {copy.previewLabel}
             </span>
           </div>
 
@@ -425,11 +426,28 @@ function SpeciesCard({ species, index }) {
 function PenyuSection() {
   const [hoveredPartId, setHoveredPartId] = useState(null)
   const [selectedPartId, setSelectedPartId] = useState(null)
+  const { copy } = useLanguage()
+  const localizedBodyParts = useMemo(
+    () =>
+      turtleBodyPartConfigs.map((config) => ({
+        ...config,
+        ...copy.turtle.anatomy.bodyParts.find((part) => part.id === config.id),
+      })),
+    [copy],
+  )
+  const localizedSpecies = useMemo(
+    () =>
+      turtleSpeciesConfigs.map((config) => ({
+        ...config,
+        ...copy.turtle.species.items.find((species) => species.id === config.id),
+      })),
+    [copy],
+  )
 
   const activePartId = hoveredPartId ?? selectedPartId
   const selectedPart = useMemo(
-    () => turtleBodyParts.find((part) => part.id === selectedPartId) ?? null,
-    [selectedPartId],
+    () => localizedBodyParts.find((part) => part.id === selectedPartId) ?? null,
+    [localizedBodyParts, selectedPartId],
   )
 
   return (
@@ -452,15 +470,16 @@ function PenyuSection() {
               variant="zoom"
               className="font-display text-4xl leading-tight text-shadow-[0_4px_18px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl"
             >
-              Mengenal <span className="text-[#ffd900]">lebih Dekat</span> Penyu Laut
+              {copy.turtle.hero.titleBefore}
+              <span className="text-[#ffd900]">{copy.turtle.hero.titleHighlight}</span>
+              {copy.turtle.hero.titleAfter}
             </Reveal>
             <Reveal
               as="p"
               delay={140}
               className="mt-5 max-w-5xl text-sm leading-7 text-white/92 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)] sm:text-base lg:text-[1.3rem] lg:leading-9"
             >
-              Perhatikan bagian tubuh penyu melalui ilustrasi interaktif ini. Arahkan kursor ke kepala, tangan,
-              kaki, atau tempurung untuk mengenali fungsi setiap bagian, lalu klik untuk membuka penjelasan detail.
+              {copy.turtle.hero.description}
             </Reveal>
           </div>
         </div>
@@ -480,10 +499,10 @@ function PenyuSection() {
           <div className="rounded-[2.2rem] border border-[#6fd7ff]/26 bg-[linear-gradient(145deg,rgba(7,31,112,0.46),rgba(4,16,70,0.58)_48%,rgba(3,11,44,0.72)_100%)] p-4 shadow-[0_28px_80px_rgba(1,10,48,0.38)] backdrop-blur-xl sm:p-6 lg:p-8">
             <Reveal variant="up" className="text-center">
               <h3 className="font-display text-2xl text-white sm:text-3xl">
-                Bentuk Tubuh <span className="text-[#ffd900]">Penyu</span>
+                {copy.turtle.anatomy.titleBefore}<span className="text-[#ffd900]">{copy.turtle.anatomy.titleHighlight}</span>
               </h3>
               <p className="mt-3 text-sm text-white/72 sm:text-base">
-                Klik bagian tubuh penyu untuk membuka penjelasan.
+                {copy.turtle.anatomy.helper}
               </p>
             </Reveal>
 
@@ -495,7 +514,7 @@ function PenyuSection() {
                   <div className="absolute inset-x-8 top-0 h-px bg-[linear-gradient(90deg,rgba(255,255,255,0),rgba(158,223,255,0.68),rgba(255,255,255,0))]" />
                 </div>
                 <div className="turtle-composite-float absolute left-[10%] top-[9%] h-[100%] w-[80%]">
-                  {turtleBodyParts.map((part) => (
+                  {localizedBodyParts.map((part) => (
                     <InteractiveTurtlePart
                       key={part.id}
                       part={part}
@@ -510,7 +529,7 @@ function PenyuSection() {
             </div>
 
             <p className="mt-5 text-center text-xs text-white/62 sm:text-sm">
-              Arahkan kursor ke tiap bagian ilustrasi lalu klik untuk membuka penjelasan detail.
+              {copy.turtle.anatomy.footer}
             </p>
           </div>
         </div>
@@ -526,25 +545,24 @@ function PenyuSection() {
 
         <div className="relative z-20 mx-auto w-full max-w-[92rem] px-6 sm:px-8 lg:px-12 xl:px-16">
           <Reveal variant="up" className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#8fdcff]/82">Eksplorasi</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#8fdcff]/82">{copy.turtle.species.kicker}</p>
             <h3 className="mt-4 font-display text-3xl text-white sm:text-4xl lg:text-5xl">
-              Jenis <span className="text-[#ffd900]">Penyu</span>
+              {copy.turtle.species.titleBefore}<span className="text-[#ffd900]">{copy.turtle.species.titleHighlight}</span>
             </h3>
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-white/78 sm:text-base">
-              Indonesia menjadi rumah bagi beberapa spesies penyu penting dunia. Masing-masing punya bentuk,
-              makanan, dan kebiasaan hidup yang berbeda, tetapi semuanya sama-sama membutuhkan laut yang sehat.
+              {copy.turtle.species.description}
             </p>
           </Reveal>
 
           <div className="mx-auto mt-10 max-w-[72rem] space-y-2 sm:space-y-3">
-            {turtleSpecies.map((species, index) => (
+            {localizedSpecies.map((species, index) => (
               <SpeciesCard key={species.id} species={species} index={index} />
             ))}
           </div>
         </div>
       </section>
 
-      <AnatomyDialog part={selectedPart} onClose={() => setSelectedPartId(null)} />
+      <AnatomyDialog part={selectedPart} onClose={() => setSelectedPartId(null)} copy={copy.turtle.anatomy} />
     </>
   )
 }

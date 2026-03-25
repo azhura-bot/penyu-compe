@@ -6,7 +6,7 @@ import MusicPlayer from '../components/layout/MusicPlayer'
 function Kontak() {
   return (
     <main className="overflow-x-hidden bg-[#03114f] text-white">
-      <Navbar activeLabel="Kontak" />
+      <Navbar activeKey="contact" />
       <ContactPageSection />
       <Footer />
       <MusicPlayer /> 

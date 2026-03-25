@@ -1,4 +1,5 @@
 import ctaBg from '../../assets/images/BG.png'
+import { useLanguage } from '../../context/LanguageContext'
 import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
 import Reveal from '../motion/Reveal'
@@ -31,13 +32,13 @@ function ContactField({ label, id, placeholder, textarea = false, type = 'text' 
   )
 }
 
-function ContactMapCard() {
+function ContactMapCard({ title }) {
   return (
     <div className="relative overflow-hidden rounded-[1.75rem] border border-white/55 bg-[linear-gradient(135deg,rgba(255,255,255,0.24),rgba(255,255,255,0.08))] p-3 shadow-[0_24px_50px_rgba(1,11,61,0.38)] backdrop-blur-xl">
       <div className="relative aspect-[1.02] overflow-hidden rounded-[1.35rem] border border-white/22 bg-[#eef3f7]">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1013047.4822824948!2d105.17801777812505!3d-7.329538800000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e42af13bd7d7093%3A0x49fcfa987486bbd2!2sPantai%20Konservasi%20Penyu%20Pangumbahan!5e0!3m2!1sid!2sid!4v1773295796980!5m2!1sid!2sid"
-          title="Lokasi Pantai Konservasi Penyu Pangumbahan"
+          title={title}
           className="absolute inset-0 h-full w-full"
           style={{ border: 0 }}
           allowFullScreen
@@ -50,6 +51,8 @@ function ContactMapCard() {
 }
 
 function ContactPageSection() {
+  const { copy } = useLanguage()
+
   const handleSubmit = (event) => {
     event.preventDefault()
   }
@@ -82,27 +85,26 @@ function ContactPageSection() {
                   delay={140}
                   className="font-display text-4xl leading-none text-[#ffd900] text-shadow-[0_6px_18px_rgba(0,0,0,0.35)] sm:text-5xl"
                 >
-                  Kontak
+                  {copy.contactPage.kicker}
                 </Reveal>
                 <Reveal
                   as="h1"
                   delay={200}
                   className="mt-3 text-2xl font-semibold text-white text-shadow-[0_4px_18px_rgba(0,0,0,0.45)] sm:text-3xl"
                 >
-                  Terhubung dengan Kami
+                  {copy.contactPage.title}
                 </Reveal>
                 <Reveal
                   as="p"
                   delay={260}
                   className="mt-5 max-w-xl text-justify text-sm leading-7 text-white/84 sm:text-base lg:text-lg"
                 >
-                  Sampaikan pertanyaan, ide kolaborasi, atau ajakan konservasi. Kami terbuka untuk terhubung dan
-                  bergerak bersama.
+                  {copy.contactPage.description}
                 </Reveal>
               </div>
 
               <Reveal delay={320} variant="pop" className="max-w-[32rem]">
-                <ContactMapCard />
+                <ContactMapCard title={copy.contactPage.mapTitle} />
               </Reveal>
             </Reveal>
 
@@ -120,17 +122,31 @@ function ContactPageSection() {
                   delay={220}
                   className="font-display text-3xl text-white text-shadow-[0_4px_16px_rgba(0,0,0,0.35)] sm:text-4xl"
                 >
-                  Form <span className="text-[#ffd900]">Kontak</span>
+                  {copy.contactPage.formTitleBefore}
+                  <span className="text-[#ffd900]">{copy.contactPage.formTitleHighlight}</span>
                 </Reveal>
 
                 <Reveal as="form" delay={280} className="mt-8 space-y-5" onSubmit={handleSubmit}>
-                  <ContactField id="nama" label="Nama Anda" placeholder="Masukkan nama lengkap" />
-                  <ContactField id="email" label="Email" placeholder="Masukkan email aktif" type="email" />
-                  <ContactField id="subjek" label="Subjek" placeholder="Tulis subjek pesan" />
+                  <ContactField
+                    id="nama"
+                    label={copy.contactPage.fields.name.label}
+                    placeholder={copy.contactPage.fields.name.placeholder}
+                  />
+                  <ContactField
+                    id="email"
+                    label={copy.contactPage.fields.email.label}
+                    placeholder={copy.contactPage.fields.email.placeholder}
+                    type="email"
+                  />
+                  <ContactField
+                    id="subjek"
+                    label={copy.contactPage.fields.subject.label}
+                    placeholder={copy.contactPage.fields.subject.placeholder}
+                  />
                   <ContactField
                     id="pesan"
-                    label="Pesan"
-                    placeholder="Tulis pesan atau kebutuhan kolaborasi Anda"
+                    label={copy.contactPage.fields.message.label}
+                    placeholder={copy.contactPage.fields.message.placeholder}
                     textarea
                   />
 
@@ -138,7 +154,7 @@ function ContactPageSection() {
                     type="submit"
                     className="inline-flex min-w-[8.75rem] items-center justify-center rounded-full border-2 border-[#ffd900] bg-transparent px-8 py-3.5 text-sm font-bold text-[#ffd900] shadow-[0_15px_24px_rgba(0,0,0,0.45)] transition hover:border-[#dcbf00] hover:bg-[#dcbf00] hover:text-[#03114f] sm:text-base"
                   >
-                    Kirim
+                    {copy.contactPage.submit}
                   </button>
                 </Reveal>
               </div>

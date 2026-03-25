@@ -1,6 +1,7 @@
 import programBg from '../../assets/images/BG-7.png'
 import programSprite from '../../assets/homepage/program-plastic.jpg'
-import { programCards } from '../../data/home'
+import { useLanguage } from '../../context/LanguageContext'
+import { programCardPositions } from '../../data/home'
 import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
 import Reveal from '../motion/Reveal'
@@ -35,6 +36,12 @@ function ProgramCard({ title, position, index }) {
 }
 
 function ProgramSection() {
+  const { copy } = useLanguage()
+  const programCards = copy.home.program.cards.map((title, index) => ({
+    title,
+    position: programCardPositions[index],
+  }))
+
   return (
     <section id="program" className="section-overlap relative isolate flex min-h-screen items-center overflow-visible pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
       <img
@@ -58,14 +65,14 @@ function ProgramSection() {
             variant="left"
             className="font-display text-3xl leading-tight text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl"
           >
-            <span className="text-[#ffd900]">Program </span>Kami
+            <span className="text-[#ffd900]">{copy.home.program.titleHighlight}</span>{copy.home.program.titleAfter}
           </Reveal>
           <Reveal
             as="p"
             delay={120}
             className="mt-5 w-full max-w-none text-sm leading-7 text-white/90 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)] sm:text-base lg:text-lg"
           >
-            Setiap langkah kecil yang di lakukan bisa memberi dampak besar bagi laut. Program dibuat untuk melindungi penyu dari hulu ke hilir mulai dari sarang di pantai hingga kehidupan mereka di lautan.
+            {copy.home.program.description}
           </Reveal>
         </div>
 

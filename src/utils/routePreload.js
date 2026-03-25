@@ -1,16 +1,16 @@
 import heroBg from '../assets/tentang/hero-bg.png'
 import docsBg from '../assets/images/BG-8.png'
 import visionBg from '../assets/images/BG-5.png'
-import { documentationImages } from '../data/tentang'
+import { documentationImageAssets } from '../data/tentang'
 
 const tentangPriorityAssets = [
   heroBg,
   visionBg,
   docsBg,
-  ...documentationImages.slice(0, 2).map((image) => image.src),
+  ...documentationImageAssets.slice(0, 2).map((image) => image.src),
 ]
 
-const tentangDeferredAssets = documentationImages.slice(2).map((image) => image.src)
+const tentangDeferredAssets = documentationImageAssets.slice(2).map((image) => image.src)
 
 let tentangRoutePromise
 let tentangCoreAssetsPromise

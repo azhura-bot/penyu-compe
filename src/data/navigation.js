@@ -1,6 +1,6 @@
 export const navItems = [
-  { label: 'Beranda', href: '/', type: 'route' },
-  { label: 'Tentang', href: '/tentang', type: 'route' },
-  { label: 'Penyu', href: '/penyu', type: 'route' },
-  { label: 'Kontak', href: '/kontak', type: 'route' },
+  { key: 'home', href: '/', type: 'route' },
+  { key: 'about', href: '/tentang', type: 'route' },
+  { key: 'turtle', href: '/penyu', type: 'route' },
+  { key: 'contact', href: '/kontak', type: 'route' },
 ]

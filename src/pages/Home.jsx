@@ -86,7 +86,7 @@ function Home() {
   return (
     <main className="overflow-hidden bg-[#03114f] text-white">
       {!isHeroExperienceReady && <HomeLoadingScreen />}
-      <Navbar activeLabel="Beranda" />
+      <Navbar activeKey="home" />
       <HeroSection
         prioritizeVideo={!hasPreparedHeroVideo}
         onVideoReady={!hasPreparedHeroVideo ? finishHeroPreparation : undefined}

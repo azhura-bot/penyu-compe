@@ -7,7 +7,7 @@ import MusicPlayer from '../components/layout/MusicPlayer'
 function Penyu() {
   return (
     <main className="overflow-hidden bg-[#03114f] text-white">
-      <Navbar activeLabel="Penyu" />
+      <Navbar activeKey="turtle" />
       <PenyuSection />
       <Footer />
       <MusicPlayer /> 

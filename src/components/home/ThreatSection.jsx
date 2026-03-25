@@ -1,6 +1,7 @@
 import threatBg from '../../assets/images/BG-4.png'
+import { useLanguage } from '../../context/LanguageContext'
+import { threatCardImages } from '../../data/home'
 import BubbleLayer from '../layout/BubbleLayer'
-import { threatCards } from '../../data/home'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
 import Reveal from '../motion/Reveal'
 
@@ -44,6 +45,12 @@ function ThreatCard({ title, description, image, index }) {
 }
 
 function ThreatSection() {
+  const { copy } = useLanguage()
+  const threatCards = copy.home.threat.cards.map((card, index) => ({
+    ...card,
+    image: threatCardImages[index],
+  }))
+
   return (
     <section id="ancaman-penyu" className="section-overlap relative isolate flex min-h-screen items-center overflow-visible pb-20 pt-44 sm:pb-24 sm:pt-48 lg:pb-28 lg:pt-52">
       <img
@@ -67,15 +74,14 @@ function ThreatSection() {
             variant="up"
             className="font-display text-3xl leading-tight text-white text-shadow-[0_4px_12px_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl"
           >
-            <span className="text-[#ffd900]">Ancaman </span>yang Mereka Hadapi
+            <span className="text-[#ffd900]">{copy.home.threat.titleHighlight}</span>{copy.home.threat.titleAfter}
           </Reveal>
           <Reveal
             as="p"
             delay={120}
             className="mx-auto mt-5 max-w-4xl text-sm leading-7 text-white/90 text-shadow-[0_4px_24px_rgba(0,0,0,0.75)] sm:text-base lg:text-lg"
           >
-            Di balik perjalanan panjang mereka di laut, ada banyak ancaman yang terus mengintai kehidupan penyu.
-            Berikut beberapa hal yang sering membahayakan mereka.
+            {copy.home.threat.description}
           </Reveal>
         </div>
 
