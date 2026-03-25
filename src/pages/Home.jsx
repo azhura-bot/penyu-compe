@@ -9,6 +9,7 @@ import DeferredSection from '../components/performance/DeferredSection'
 import { warmTentangPage } from '../utils/routePreload'
 
 const WhySection = lazy(() => import('../components/home/WhySection'))
+const JourneySection = lazy(() => import('../components/home/JourneySection'))
 const ThreatSection = lazy(() => import('../components/home/ThreatSection'))
 const ProgramSection = lazy(() => import('../components/home/ProgramSection'))
 const ContactSectionLazy = lazy(() => import('../components/home/ContactSection'))
@@ -92,6 +93,11 @@ function Home() {
         onVideoReady={!hasPreparedHeroVideo ? finishHeroPreparation : undefined}
         onVideoError={!hasPreparedHeroVideo ? finishHeroPreparation : undefined}
       />
+      <DeferredSection fallback={<SectionFallback />} minHeight="100vh">
+        <Suspense fallback={<SectionFallback />}>
+          <JourneySection />
+        </Suspense>
+      </DeferredSection>
       <DeferredSection fallback={<SectionFallback />} minHeight="100vh">
         <Suspense fallback={<SectionFallback />}>
           <WhySection />

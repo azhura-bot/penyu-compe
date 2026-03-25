@@ -40,6 +40,43 @@ const id = {
         'Penyu sudah menjelajahi lautan sejak jutaan tahun lalu, jauh sebelum manusia mengenal peradaban. Mereka terus kembali ke pantai yang sama untuk bertelur, menjaga siklus hidup yang luar biasa dari generasi ke generasi.',
       button: 'Tentang Penyu',
     },
+    journey: {
+      kicker: 'Siklus Kehidupan',
+      titleBefore: 'Perjalanan ',
+      titleHighlight: 'Penyu',
+      description:
+        'Setiap penyu menempuh perjalanan panjang sejak masih berada di dalam telur hingga kembali ke pantai untuk bertelur. Arahkan kursor ke kartu untuk melihat cerita di setiap tahap kehidupannya.',
+      hoverHint: 'Arahkan kursor untuk melihat cerita',
+      stageLabel: 'Tahap',
+      ariaLabel: 'Perjalanan penyu',
+      steps: [
+        {
+          title: 'Dari Dalam Telur',
+          description:
+            'Penyu memulai hidupnya di dalam telur yang tertanam di pasir pantai. Setelah induknya pergi, mereka harus menghadapi dunia sendirian.',
+        },
+        {
+          title: 'Menetas dan Menuju Laut',
+          description:
+            'Saat menetas, tukik langsung bergerak menuju laut. Perjalanan singkat ini sangat berbahaya karena banyak predator yang mengintai.',
+        },
+        {
+          title: 'Hidup di Laut Lepas',
+          description:
+            'Di lautan luas, penyu tumbuh dan belajar bertahan hidup. Mereka menghabiskan waktu bertahun-tahun di laut.',
+        },
+        {
+          title: 'Menjadi Dewasa',
+          description:
+            'Setelah cukup besar, penyu mulai menjalani perannya di laut dan membantu menjaga keseimbangan ekosistem.',
+        },
+        {
+          title: 'Kembali ke Pantai',
+          description:
+            'Saat waktunya bertelur, penyu kembali ke pantai tempat mereka lahir. Siklus hidup pun berulang kembali.',
+        },
+      ],
+    },
     why: {
       titleBefore: 'Mengapa',
       titleHighlight: 'Penyu Penting?',

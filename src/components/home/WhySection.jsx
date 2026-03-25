@@ -176,7 +176,7 @@ function WhySection() {
       <Rectangle17Blend position="top" />
       <Rectangle17Blend position="bottom" />
 
-      <div className="relative z-20 mx-auto grid w-full max-w-[92rem] gap-10 px-6 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-18 lg:px-12 xl:px-16">
+      <div className="relative z-20 mx-auto grid w-full max-w-[92rem] gap-10 px-35 sm:px-35 lg:px-35 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-18">
         <div className="order-1 max-w-2xl">
           <Reveal
             as="h2"

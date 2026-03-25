@@ -40,6 +40,43 @@ const en = {
         'Sea turtles have traveled the oceans for millions of years, long before humans knew civilization. They keep returning to the same beaches to lay eggs, preserving an extraordinary life cycle from one generation to the next.',
       button: 'About Sea Turtles',
     },
+    journey: {
+      kicker: 'Life Cycle',
+      titleBefore: 'The Journey ',
+      titleHighlight: 'of Sea Turtles',
+      description:
+        'Every sea turtle goes through a long journey, from the egg buried in the sand to returning to the shore to lay eggs again. Hover over each card to reveal the story behind every stage.',
+      hoverHint: 'Hover to reveal the story',
+      stageLabel: 'Stage',
+      ariaLabel: 'Sea turtle journey',
+      steps: [
+        {
+          title: 'From the Egg',
+          description:
+            'Sea turtles begin their lives inside eggs buried in the sand. After their mother leaves, they must face the world on their own.',
+        },
+        {
+          title: 'Hatching and Heading to the Ocean',
+          description:
+            'Once they hatch, baby turtles instinctively move toward the ocean. This short journey is very dangerous, as many predators are waiting.',
+        },
+        {
+          title: 'Life in the Open Ocean',
+          description:
+            'In the vast ocean, sea turtles grow and learn to survive. They spend many years living in the open sea.',
+        },
+        {
+          title: 'Becoming Adults',
+          description:
+            'As they mature, sea turtles take on their role in the ocean, helping maintain the balance of the ecosystem.',
+        },
+        {
+          title: 'Returning to the Beach',
+          description:
+            'When it is time to lay eggs, sea turtles return to the very beach where they were born. The life cycle begins again.',
+        },
+      ],
+    },
     why: {
       titleBefore: 'Why Are ',
       titleHighlight: 'Sea Turtles Important?',
