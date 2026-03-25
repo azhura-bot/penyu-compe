@@ -1,4 +1,4 @@
-# Website Komunitas Penyu Nusantara Transformasi Edukasi Digital untuk Mendukung Konservasi Penyu di Indonesia
+# Website Komunitas Penyu Nusantara: Transformasi Edukasi Digital untuk Mendukung Konservasi Penyu di Indonesia
 
 ## Institut Pertanian Bogor
 
