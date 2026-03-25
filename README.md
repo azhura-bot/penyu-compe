@@ -18,4 +18,4 @@ Tujuan utama dari pengembangan website ini adalah untuk meningkatkan kesadaran m
 Pemilihan subtema Lingkungan didasarkan pada urgensi permasalahan lingkungan laut yang saat ini semakin meningkat, khususnya yang berkaitan dengan kelangsungan hidup penyu. Penyu merupakan salah satu spesies indikator kesehatan ekosistem laut, sehingga pelestarian penyu secara tidak langsung juga berkontribusi dalam menjaga keberlanjutan ekosistem laut secara keseluruhan. Melalui pemanfaatan teknologi web sebagai media edukasi dan komunikasi, website ini diharapkan mampu menjadi jembatan antara informasi, kesadaran, dan aksi nyata masyarakat dalam mendukung konservasi penyu di Indonesia.
 
 ## Link Website
-- https://penyu-edu.netlify.app/
+https://penyu-edu.netlify.app/
