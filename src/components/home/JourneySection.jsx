@@ -1,4 +1,4 @@
-import journeyBg from '../../assets/images/BG-2.png'
+import journeyBg from '../../assets/images/BG-3.png'
 import eggImage from '../../assets/journey/Dari Dalam Telur.png'
 import hatchImage from '../../assets/journey/Menetas dan Menuju Laut.png'
 import oceanImage from '../../assets/journey/Hidup di Laut Lepas.png'
