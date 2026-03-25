@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-import seaTurtleVideo from '../../assets/homepage/sea-turtle.webm'
+import seaTurtleVideo from '../../assets/homepage/sea-turtle.mp4'
 import { useLanguage } from '../../context/LanguageContext'
 import BubbleLayer from '../layout/BubbleLayer'
 import Reveal from '../motion/Reveal'
@@ -69,7 +69,7 @@ function HeroSection({ prioritizeVideo = false, onVideoReady, onVideoError }) {
           onCanPlay={handleVideoReady}
           onError={handleVideoError}
         >
-          <source src={seaTurtleVideo} type="video/webm" />
+          <source src={seaTurtleVideo} type="video/mp4" />
         </video>
       )}
 
