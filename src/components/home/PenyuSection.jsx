@@ -372,25 +372,25 @@ function SpeciesCard({ species, index }) {
   const turtleOffsetClass =
     species.id === 'lekang'
       ? isEven
-        ? 'right-[-2.6rem] sm:right-[-3rem] lg:right-[-3.4rem]'
-        : 'left-[-0.6rem] sm:left-[-0.9rem] lg:left-[-1rem]'
+        ? 'right-[-2.5rem] sm:right-[-3rem] lg:right-[-3.5rem]'
+        : 'left-[-0.8rem] sm:left-[-1rem] lg:left-[-1.2rem]'
       : ''
   const turtleImageShiftClass =
-    species.id === 'lekang' ? 'translate-x-8 sm:translate-x-10 lg:translate-x-12' : ''
-  const turtleSizeClass = species.id === 'lekang' ? 'scale-[1.08] sm:scale-[1.1]' : ''
+    species.id === 'lekang' ? 'translate-x-7 sm:translate-x-9 lg:translate-x-11' : ''
+  const turtleSizeClass = species.id === 'lekang' ? 'scale-[1.06] sm:scale-[1.09]' : ''
 
   return (
     <Reveal
       variant={isEven ? 'left' : 'right'}
       delay={index * 90}
-      className="group relative"
+      className="group relative mb-6 sm:mb-8 lg:mb-10" // Spacing yang pas: tidak terlalu rapet
     >
-      <div className={`relative min-h-[16.75rem] sm:min-h-[18.75rem] ${isEven ? 'lg:pr-32' : 'lg:pl-32'}`}>
+      <div className={`relative min-h-[16rem] sm:min-h-[17rem] ${isEven ? 'lg:pr-32' : 'lg:pl-32'}`}>
         <div
           className={`relative overflow-hidden rounded-[1.55rem] border border-white/28 bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.06)_38%,rgba(115,184,255,0.14)_100%)] shadow-[0_20px_50px_rgba(0,0,0,0.28)] backdrop-blur-md ${
             isEven
-              ? 'mr-2 px-5 py-6 pr-[50%] sm:mr-3 sm:px-6 sm:py-7 sm:pr-[44%] lg:pr-[18%]'
-              : 'ml-2 px-5 py-6 pl-[50%] sm:ml-3 sm:px-6 sm:py-7 sm:pl-[44%] lg:pl-[18%]'
+              ? 'mr-2 px-5 py-6 pr-[48%] sm:mr-3 sm:px-6 sm:py-7 sm:pr-[44%] lg:pr-[22%]'
+              : 'ml-2 px-5 py-6 pl-[48%] sm:ml-3 sm:px-6 sm:py-7 sm:pl-[44%] lg:pl-[22%]'
           }`}
         >
           <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${species.accent} opacity-90`} />
@@ -405,8 +405,8 @@ function SpeciesCard({ species, index }) {
         <div
           className={`pointer-events-none absolute z-10 ${
             isEven
-              ? 'right-[-4rem] top-[-2.9rem] w-[20rem] sm:right-[-4.4rem] sm:top-[-3.7rem] sm:w-[24rem] lg:right-[-4.8rem] lg:top-[-4.2rem] lg:w-[28rem]'
-              : 'left-[-4rem] top-[-2.9rem] w-[20rem] sm:left-[-4.4rem] sm:top-[-3.7rem] sm:w-[24rem] lg:left-[-4.8rem] lg:top-[-4.2rem] lg:w-[28rem]'
+              ? 'right-[-3.5rem] top-[-2.5rem] w-[19rem] sm:right-[-4rem] sm:top-[-3rem] sm:w-[23rem] lg:right-[-4.5rem] lg:top-[-3.5rem] lg:w-[27rem]'
+              : 'left-[-3.5rem] top-[-2.5rem] w-[19rem] sm:left-[-4rem] sm:top-[-3rem] sm:w-[23rem] lg:left-[-4.5rem] lg:top-[-3.5rem] lg:w-[27rem]'
           } ${turtleOffsetClass}`}
         >
           <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${species.accent} opacity-18 blur-3xl`} />
@@ -415,6 +415,7 @@ function SpeciesCard({ species, index }) {
               src={species.image}
               alt={species.title}
               className={`relative h-auto w-full object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.32)] ${motionClass} ${turtleSizeClass}`}
+              loading="eager"
             />
           </div>
         </div>
@@ -554,7 +555,7 @@ function PenyuSection() {
             </p>
           </Reveal>
 
-          <div className="mx-auto mt-10 max-w-[72rem] space-y-2 sm:space-y-3">
+          <div className="mx-auto mt-12 max-w-[72rem] space-y-0">
             {localizedSpecies.map((species, index) => (
               <SpeciesCard key={species.id} species={species} index={index} />
             ))}
