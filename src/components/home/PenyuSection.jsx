@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react'
-
+import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react'
+import ReactDOM from 'react-dom'
 import { useLanguage } from '../../context/LanguageContext'
 import BubbleLayer from '../layout/BubbleLayer'
 import Rectangle17Blend from '../layout/Rectangle17Blend'
@@ -9,6 +9,7 @@ import anatomyBg from '../../assets/images/BG-9.png'
 import speciesBg from '../../assets/images/BG-6.png'
 import heroBg from '../../assets/tentang/hero-bg.png'
 import penyuBodyDiagram from '../../assets/penyu.png'
+
 const TURTLE_SPRITE_SIZE = { width: 1536, height: 1024 }
 const TURTLE_COMPOSITE_PARTS = {
   'tangan-kiri': {
@@ -137,8 +138,10 @@ function AdaptiveBackground({ src, alt = '', objectPosition = 'center' }) {
       src={src}
       alt={alt}
       aria-hidden="true"
+      loading="lazy"
+      decoding="async"
       className="absolute inset-x-0 -top-24 bottom-0 h-[calc(100%+6rem)] w-full object-cover"
-      style={{ objectPosition }}
+      style={{ objectPosition, willChange: 'transform' }}
     />
   )
 }
@@ -164,7 +167,7 @@ function SeamMist({ position = 'top' }) {
   )
 }
 
-function InteractiveTurtlePart({ part, isActive, onActivate, onDeactivate, onSelect }) {
+const InteractiveTurtlePart = React.memo(({ part, isActive, onActivate, onDeactivate, onSelect }) => {
   const config = TURTLE_COMPOSITE_PARTS[part.id]
 
   if (!config) {
@@ -179,6 +182,8 @@ function InteractiveTurtlePart({ part, isActive, onActivate, onDeactivate, onSel
       style={{
         ...placement,
         aspectRatio: `${crop.width} / ${crop.height}`,
+        willChange: 'transform, opacity',
+        transform: 'translateZ(0)',
       }}
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -186,6 +191,8 @@ function InteractiveTurtlePart({ part, isActive, onActivate, onDeactivate, onSel
           src={penyuBodyDiagram}
           alt=""
           aria-hidden="true"
+          loading="lazy"
+          decoding="async"
           className="absolute max-w-none select-none"
           style={{
             width: `${(TURTLE_SPRITE_SIZE.width / crop.width) * 100}%`,
@@ -229,7 +236,10 @@ function InteractiveTurtlePart({ part, isActive, onActivate, onDeactivate, onSel
       </div>
     </div>
   )
-}
+}, (prevProps, nextProps) => {
+  return prevProps.isActive === nextProps.isActive && 
+         prevProps.part.id === nextProps.part.id
+})
 
 function DialogTurtlePreview({ activePartId }) {
   const config = TURTLE_COMPOSITE_PARTS[activePartId]
@@ -270,6 +280,8 @@ function DialogTurtlePreview({ activePartId }) {
           ...previewStyle,
           aspectRatio: `${crop.width} / ${crop.height}`,
           filter: 'drop-shadow(0 0 18px rgba(255,217,0,0.34)) drop-shadow(0 16px 28px rgba(0,0,0,0.28))',
+          willChange: 'transform',
+          transform: 'translateZ(0)',
         }}
       >
         <div className="absolute inset-0 overflow-hidden">
@@ -277,6 +289,8 @@ function DialogTurtlePreview({ activePartId }) {
             src={penyuBodyDiagram}
             alt=""
             aria-hidden="true"
+            loading="lazy"
+            decoding="async"
             className="absolute max-w-none select-none"
             style={{
               width: `${(TURTLE_SPRITE_SIZE.width / crop.width) * 100}%`,
@@ -302,6 +316,8 @@ function AnatomyDialog({ part, onClose, copy }) {
       return undefined
     }
 
+    document.body.style.overflow = 'hidden'
+
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         onClose()
@@ -309,14 +325,17 @@ function AnatomyDialog({ part, onClose, copy }) {
     }
 
     window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
+    }
   }, [onClose, part])
 
   if (!part) {
     return null
   }
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 z-[130] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true">
       <button
         type="button"
@@ -342,7 +361,7 @@ function AnatomyDialog({ part, onClose, copy }) {
               aria-label={copy.closeButton}
               onClick={onClose}
             >
-              x
+              ×
             </button>
           </div>
 
@@ -362,35 +381,36 @@ function AnatomyDialog({ part, onClose, copy }) {
           <p className="type-body mt-6 text-white/86">{part.description}</p>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 
-function SpeciesCard({ species, index }) {
+const SpeciesCard = React.memo(({ species, index }) => {
   const isEven = index % 2 === 0
   const motionClass = isEven ? 'turtle-float-right' : 'turtle-float-left'
   const turtleOffsetClass =
     species.id === 'lekang'
       ? isEven
-        ? 'right-[-2.5rem] sm:right-[-3rem] lg:right-[-3.5rem]'
-        : 'left-[-0.8rem] sm:left-[-1rem] lg:left-[-1.2rem]'
+        ? 'right-[-2.6rem] sm:right-[-3rem] lg:right-[-3.4rem]'
+        : 'left-[-0.6rem] sm:left-[-0.9rem] lg:left-[-1rem]'
       : ''
   const turtleImageShiftClass =
-    species.id === 'lekang' ? 'translate-x-7 sm:translate-x-9 lg:translate-x-11' : ''
-  const turtleSizeClass = species.id === 'lekang' ? 'scale-[1.06] sm:scale-[1.09]' : ''
+    species.id === 'lekang' ? 'translate-x-8 sm:translate-x-10 lg:translate-x-12' : ''
+  const turtleSizeClass = species.id === 'lekang' ? 'scale-[1.08] sm:scale-[1.1]' : ''
 
   return (
     <Reveal
       variant={isEven ? 'left' : 'right'}
       delay={index * 90}
-      className="group relative mb-6 sm:mb-8 lg:mb-10" // Spacing yang pas: tidak terlalu rapet
+      className="group relative"
     >
-      <div className={`relative min-h-[16rem] sm:min-h-[17rem] ${isEven ? 'lg:pr-32' : 'lg:pl-32'}`}>
+      <div className={`relative min-h-[16.75rem] sm:min-h-[18.75rem] ${isEven ? 'lg:pr-32' : 'lg:pl-32'}`}>
         <div
           className={`relative overflow-hidden rounded-[1.55rem] border border-white/28 bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.06)_38%,rgba(115,184,255,0.14)_100%)] shadow-[0_20px_50px_rgba(0,0,0,0.28)] backdrop-blur-md ${
             isEven
-              ? 'mr-2 px-5 py-6 pr-[48%] sm:mr-3 sm:px-6 sm:py-7 sm:pr-[44%] lg:pr-[22%]'
-              : 'ml-2 px-5 py-6 pl-[48%] sm:ml-3 sm:px-6 sm:py-7 sm:pl-[44%] lg:pl-[22%]'
+              ? 'mr-2 px-5 py-6 pr-[50%] sm:mr-3 sm:px-6 sm:py-7 sm:pr-[44%] lg:pr-[18%]'
+              : 'ml-2 px-5 py-6 pl-[50%] sm:ml-3 sm:px-6 sm:py-7 sm:pl-[44%] lg:pl-[18%]'
           }`}
         >
           <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${species.accent} opacity-90`} />
@@ -405,8 +425,8 @@ function SpeciesCard({ species, index }) {
         <div
           className={`pointer-events-none absolute z-10 ${
             isEven
-              ? 'right-[-3.5rem] top-[-2.5rem] w-[19rem] sm:right-[-4rem] sm:top-[-3rem] sm:w-[23rem] lg:right-[-4.5rem] lg:top-[-3.5rem] lg:w-[27rem]'
-              : 'left-[-3.5rem] top-[-2.5rem] w-[19rem] sm:left-[-4rem] sm:top-[-3rem] sm:w-[23rem] lg:left-[-4.5rem] lg:top-[-3.5rem] lg:w-[27rem]'
+              ? 'right-[-4rem] top-[-2.9rem] w-[20rem] sm:right-[-4.4rem] sm:top-[-3.7rem] sm:w-[24rem] lg:right-[-4.8rem] lg:top-[-4.2rem] lg:w-[28rem]'
+              : 'left-[-4rem] top-[-2.9rem] w-[20rem] sm:left-[-4.4rem] sm:top-[-3.7rem] sm:w-[24rem] lg:left-[-4.8rem] lg:top-[-4.2rem] lg:w-[28rem]'
           } ${turtleOffsetClass}`}
         >
           <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${species.accent} opacity-18 blur-3xl`} />
@@ -414,20 +434,24 @@ function SpeciesCard({ species, index }) {
             <img
               src={species.image}
               alt={species.title}
+              loading="lazy"
+              decoding="async"
               className={`relative h-auto w-full object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.32)] ${motionClass} ${turtleSizeClass}`}
-              loading="eager"
+              style={{ willChange: 'transform' }}
             />
           </div>
         </div>
       </div>
     </Reveal>
   )
-}
+})
 
 function PenyuSection() {
   const [hoveredPartId, setHoveredPartId] = useState(null)
   const [selectedPartId, setSelectedPartId] = useState(null)
   const { copy } = useLanguage()
+  const hoverTimeoutRef = useRef(null)
+
   const localizedBodyParts = useMemo(
     () =>
       turtleBodyPartConfigs.map((config) => ({
@@ -451,6 +475,31 @@ function PenyuSection() {
     [localizedBodyParts, selectedPartId],
   )
 
+  const handleActivate = useCallback((partId) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+    }
+    setHoveredPartId(partId)
+  }, [])
+
+  const handleDeactivate = useCallback(() => {
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredPartId(null)
+    }, 50)
+  }, [])
+
+  const handleSelect = useCallback((partId) => {
+    setSelectedPartId(partId)
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current)
+      }
+    }
+  }, [])
+
   return (
     <>
       <section id="penyu-section" className="relative isolate flex min-h-[44rem] items-end overflow-visible pt-28 sm:pt-32 lg:pt-36">
@@ -458,6 +507,8 @@ function PenyuSection() {
           src={heroBg}
           alt=""
           aria-hidden="true"
+          loading="eager"
+          decoding="async"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,13,109,0.7)_0%,rgba(0,13,109,0.64)_42%,rgba(3,17,79,0.78)_100%)]" />
@@ -520,9 +571,9 @@ function PenyuSection() {
                       key={part.id}
                       part={part}
                       isActive={activePartId === part.id}
-                      onActivate={() => setHoveredPartId(part.id)}
-                      onDeactivate={() => setHoveredPartId(null)}
-                      onSelect={() => setSelectedPartId(part.id)}
+                      onActivate={() => handleActivate(part.id)}
+                      onDeactivate={handleDeactivate}
+                      onSelect={() => handleSelect(part.id)}
                     />
                   ))}
                 </div>
@@ -555,7 +606,7 @@ function PenyuSection() {
             </p>
           </Reveal>
 
-          <div className="mx-auto mt-12 max-w-[72rem] space-y-0">
+          <div className="mx-auto mt-10 max-w-[72rem] space-y-2 sm:space-y-3">
             {localizedSpecies.map((species, index) => (
               <SpeciesCard key={species.id} species={species} index={index} />
             ))}
@@ -568,4 +619,32 @@ function PenyuSection() {
   )
 }
 
-export default PenyuSection
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { hasError: false }
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true }
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('PenyuSection error:', error, errorInfo)
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <div className="p-8 text-center text-white">Something went wrong loading this section. Please refresh the page.</div>
+    }
+    return this.props.children
+  }
+}
+
+export default function PenyuSectionWithErrorBoundary() {
+  return (
+    <ErrorBoundary>
+      <PenyuSection />
+    </ErrorBoundary>
+  )
+}
