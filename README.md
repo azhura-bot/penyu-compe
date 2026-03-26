@@ -1,6 +1,7 @@
 # Website Komunitas Penyu Nusantara: Transformasi Edukasi Digital untuk Mendukung Konservasi Penyu di Indonesia
 
-## Institut Pertanian Bogor
+## Istitusi 
+Institut Pertanian Bogor
 
 ## Anggota Tim
 - Ketua: Ahmad Hasan Faqih Aulia
